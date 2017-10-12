@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+
 import { AuthService } from './services/auth.service';
 
 import { AngularFireModule } from 'angularfire2';
