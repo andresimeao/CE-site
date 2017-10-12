@@ -19,7 +19,7 @@ import { CreateUserComponent } from './create-user/create-user.component';
   ],
   imports: [
     BrowserModule,
-    AngularFireModule.initializeApp(environment.config, 'CEFRP'),
+    AngularFireModule.initializeApp(environment.config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule
