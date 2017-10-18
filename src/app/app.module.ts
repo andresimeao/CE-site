@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 //services
 import { AuthService } from './services/auth.service';
 //Modules
@@ -15,19 +16,22 @@ import { LoginComponent } from './login/login.component';
 //router
 import {routing} from './app.routing'
 
+
 @NgModule({
   declarations: [
     AppComponent,
     CreateUserComponent,
-    LoginComponent
-  ],
+    LoginComponent,
+    ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.config),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFirestoreModule,
-    routing
+    routing,
+    ReactiveFormsModule,
+    FormsModule
 
   ],
   providers: [AuthService],
