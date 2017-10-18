@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+import { AuthService } from '.././services/auth.service';
+
+import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-create-user',
@@ -8,25 +11,42 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class CreateUserComponent implements OnInit {
 
-  addUserForm:FormGroup;
+  addUserForm: FormGroup;
+  AuthService: AuthService;
 
-  constructor(public formBuilder: FormBuilder) {
-
-    this.addUserForm = this.formBuilder.group({
-      empresaName:['', Validators.compose([Validators.required])],
-      name:['',Validators.compose([Validators.required])],
-      email:['',Validators.compose([Validators.required, Validators.email])],
-      password:['', Validators.compose([Validators.required, Validators.minLength(6)])],
-      
-      
-
-    });
+  constructor(private formbuilder: FormBuilder, authService: AuthService) {
+    this.AuthService = authService;
   }
 
-  CreateUser(){
-    console.log('=D');
-  }
   ngOnInit() {
+
+    this.addUserForm = this.formbuilder.group({
+      company:[null, Validators.required],
+      name:[null, Validators.required],
+      email:[null, [Validators.required, Validators.email]],
+      password:[null, [Validators.required, Validators.minLength(6)]],
+      password2:[null, [Validators.required, Validators.minLength(6)]]
+    });
+
   }
 
+  createUser(){
+    let user = this.AuthService.createEmailAndPassword(this.addUserForm.value)
+    this.addUserForm.reset();
+    console.log(user);
+    
+  }
+
+  checkFieldValidAndTouched(field){
+    return !this.addUserForm.get(field).errors && this.addUserForm.get(field).touched;
+  }
+
+  toApplyCssErro(field){
+    return{ 
+      
+      'has-error': this.checkFieldValidAndTouched(field),
+      'has-feedback': this.checkFieldValidAndTouched(field)
+      
+    }
+  }
 }

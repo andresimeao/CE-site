@@ -13,11 +13,11 @@ export class AuthService {
   login(){
      
   }
-  createEmalAndPassword(user){
+  createEmailAndPassword(user){
 
     this.afAuth.app.auth().createUserWithEmailAndPassword(user.email, user.password)
     .then(firebaseUser =>{
-      this.afDB.database.ref('users/'+ firebaseUser.uid).set({name:user.name, email:user.email});
+      this.afDB.database.ref('users/'+ firebaseUser.uid).set({company:user.company, name:user.name, email:user.email});
       return firebaseUser;
     }).catch(erro =>{
       return erro;

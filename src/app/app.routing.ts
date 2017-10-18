@@ -6,8 +6,10 @@ import { CreateUserComponent } from './create-user/create-user.component';
 
 const APP_ROUTES: Routes =[
 
-{path:'', component:LoginComponent},
-{path:'create-user', component:CreateUserComponent}
+{path:'login', component:LoginComponent},
+{path:'create-user', component:CreateUserComponent},
+{path:'', component:CreateUserComponent}
+
 
 ];
 

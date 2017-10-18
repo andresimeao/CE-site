@@ -1,24 +1,37 @@
-<form (ngSubmit)="createUser()" novalidate>
-  <div class="form-group">
-      <label >Empresa</label>
-      <input class="form-control" type="text" formControlName="empresaName" placeholder="Nome da empresa">
+<form [formGroup]="addUserForm" (ngSubmit)="createUser()">
+
+  <div class="form-group" [ngClass]="toApplyCssErro('company')">
+      <label>Empresa</label>
+      <input class="form-control" formControlName="company" type="text" placeholder="Nome da empresa">
+    
+      <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('company').valid && addUserForm.get('company').touched">
+          Campo Obrigatório
+        </div>
     </div>
-    <div class="form-group">
+
+    
+    <div class="form-group" [ngClass]="toApplyCssErro('name')">
         <label>Nome</label>
-        <input class="form-control" type="text" formControlName="name" name="name" id="name" placeholder="Nome do responsavel">
+        <input class="form-control" formControlName="name" type="text"  id="name" placeholder="Nome do responsavel">
+        <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('name').valid && addUserForm.get('name').touched">
+            Campo Obrigatório
+          </div>
+      </div>
+      <div class="form-group" [ngClass]="toApplyCssErro('email')">
+          <label >Email</label>
+          <input class="form-control" type="email"  formControlName="email" id="email" placeholder="Seu Email">
+          <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('email').valid && addUserForm.get('email').touched">
+              Campo Obrigatório
+            </div>
+        </div>
+    <div class="form-group">
+        <label for="password1" >Senha</label>
+        <input class="form-control" type="password"  formControlName="password" id="password1" placeholder="Digite uma senha">
       </div>
       <div class="form-group">
-          <label >Email</label>
-          <input class="form-control" type="email" formControlName="email" name="email" id="email" placeholder="Seu Email">
-        </div>
-    <div class="form-group">
-        <label >Senha</label>
-        <input  type="password" formControlName="password" name="password1" id="password1" placeholder="Digite uma senha">
-      </div>
-      <div >
           <label for="password2">Repita a senha</label>
-          <input class="form-control" type="password" name="password2" id="password2" placeholder="Digite senha novamente">
+          <input class="form-control" type="password"  formControlName="password2" id="password2" placeholder="Digite senha novamente">
         </div>
         
-        <button class="btn btn-primary" type="submit" [disabled]="!addUserForm.valid">Cadastrar</button>
+        <button class="btn btn-primary" type="submit">Cadastrar</button>
 </form>
