@@ -13,7 +13,7 @@ export class CreateUserComponent implements OnInit {
 
   addUserForm: FormGroup;
   AuthService: AuthService;
-
+  user: any;
   constructor(private formbuilder: FormBuilder, authService: AuthService) {
     this.AuthService = authService;
   }
@@ -31,10 +31,10 @@ export class CreateUserComponent implements OnInit {
   }
 
   createUser(){
-    let user = this.AuthService.createEmailAndPassword(this.addUserForm.value)
-    this.addUserForm.reset();
-    console.log(user);
+   this.AuthService.createEmailAndPassword(this.addUserForm.value)
+   this.addUserForm.reset();
     
+
   }
 
   checkFieldValidAndTouched(field){
