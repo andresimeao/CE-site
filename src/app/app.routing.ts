@@ -8,7 +8,7 @@ const APP_ROUTES: Routes =[
 
 {path:'login', component:LoginComponent},
 {path:'create-user', component:CreateUserComponent},
-{path:'', component:CreateUserComponent}
+{path:'', component:LoginComponent}
 
 
 ];

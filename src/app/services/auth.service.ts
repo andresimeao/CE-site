@@ -10,11 +10,17 @@ import { LoginComponent } from '.././login/login.component';
 
 @Injectable()
 export class AuthService {
-firebaseUser:any;
-erro:any;
+
   constructor(public afAuth:AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
 
-  login(){
+  login(user){
+
+    this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password).then(Resp =>{
+      alert('Usuario logado com sucesso: ' + Resp);
+      console.log(Resp);
+    }).catch(erro =>{
+      alert('Erro: ' + erro.message);
+    })
      
   }
   createEmailAndPassword(user){
@@ -24,14 +30,12 @@ erro:any;
 
       this.afDB.database.ref('users/'+ firebaseUser.uid).set({company:user.company, name:user.name, email:user.email, status:2});
       
-     this.firebaseUser = firebaseUser;
      alert('sucesso, id do usuario: '+ firebaseUser.uid);
       this.router.navigate(['/login']);
     }).catch(erro =>{
       
     alert('error: ' + erro.message);
      
-    })
-    return this.firebaseUser, this.erro;
+    });
   }
 }
