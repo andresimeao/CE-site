@@ -3,21 +3,40 @@ import {Router} from '@angular/router';
 
 import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
 import { LoginComponent } from '.././login/login.component';
 
 @Injectable()
 export class AuthService {
-
+  status:any;
   constructor(public afAuth:AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
+
+getUser(id){
+
+ let user = this.afDB.database.ref('/users/' + id)
+ 
+  user.on('value', snapshot =>{
+    
+    this.status = snapshot.val().status;
+    
+    
+  });
+
+return this.status;
+
+}
 
   login(user){
 
     this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password).then(Resp =>{
-      alert('Usuario logado com sucesso: ' + Resp);
-      console.log(Resp);
+      alert('Usuario logado com sucesso: ' + Resp.uid);
+     let status =  this.getUser(Resp.uid);
+     
+      if(this.status == 2){
+        alert('usuario de empresa');
+      }
     }).catch(erro =>{
       alert('Erro: ' + erro.message);
     })
