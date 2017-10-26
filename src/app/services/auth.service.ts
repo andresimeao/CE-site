@@ -13,33 +13,49 @@ export class AuthService {
   status:any;
   constructor(public afAuth:AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
 
-getUser(id){
+  getStatusUser(id){
 
- let user = this.afDB.database.ref('/users/' + id)
- 
-  user.on('value', snapshot =>{
+    let user = this.afDB.database.ref('/users/' + id)
     
-    this.status = snapshot.val().status;
-    
-    
-  });
+      user.on('value', snapshot =>{
+        
+        this.status = snapshot.val().status;
+        
+      });
 
-return this.status;
+    return this.status;
 
-}
+  }
 
   login(user){
 
     this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password).then(Resp =>{
       alert('Usuario logado com sucesso: ' + Resp.uid);
-     let status =  this.getUser(Resp.uid);
-     
-      if(this.status == 2){
-        alert('usuario de empresa');
-      }
+     let status =  this.getStatusUser(Resp.uid);
+     switch(status){
+       case 1:
+       this.router.navigate(['/home-page-central']);
+       break;
+       case 2: 
+       this.router.navigate(['/home-page-company']);
+       break;
+     }
+ 
     }).catch(erro =>{
-      alert('Erro: ' + erro.message);
-    })
+      switch (erro.code) {
+        case 'auth/invalid-email': alert('Endereço de e-mail invalido');   
+          break;
+
+        case 'auth/user-disabled' : alert('Email desativado');
+        break;
+
+        case 'auth/user-not-found': alert('Conta de usuario não encontrado');
+        break;
+
+        case 'auth/wrong-password': alert('endereço de email ou senha invalidos');
+        break;
+      }
+    });
      
   }
   createEmailAndPassword(user){

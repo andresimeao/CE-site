@@ -13,8 +13,12 @@ import {AngularFirestoreModule} from 'angularfire2/firestore';
 //componets
 import { CreateUserComponent } from './create-user/create-user.component';
 import { LoginComponent } from './login/login.component';
+import { HomePageCompanyComponent } from './home-page-company/home-page-company.component';
+import { HomePageCentralComponent } from './home-page-central/home-page-central.component';
 //router
-import {routing} from './app.routing'
+import {routing} from './app.routing';
+
+
 
 
 @NgModule({
@@ -22,6 +26,8 @@ import {routing} from './app.routing'
     AppComponent,
     CreateUserComponent,
     LoginComponent,
+    HomePageCompanyComponent,
+    HomePageCentralComponent,
     ],
   imports: [
     BrowserModule,
