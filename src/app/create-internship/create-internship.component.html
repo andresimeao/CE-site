@@ -1,0 +1,32 @@
+<div class="form-group">
+    <label for="Vaga">Quais são as vagas ?</label>
+    <input type="text" class="form-control"> 
+</div>
+<div class="form-group">
+    <label for="periodos">Periodo de prestação de serviço ?</label>
+    <div class="form-control">
+            Manhã
+            <input type="checkbox" name="manhã" id="">
+            Tarde
+            <input type="checkbox" name="tarde" id="">
+            Noite
+            <input type="checkbox" name="noite" id="">
+    </div>
+</div>
+
+<div class="form-group">
+        <label for="Vaga">Havera remuneração ?</label>
+        <div class="form-control">
+            Sim
+            <input type="checkbox">
+            Não
+            <input type="checkbox">
+            Outro
+            <input type="checkbox" id="teste">
+        </div>
+        <div *ngIf="teste == true" class="form-control">
+            <label for="qual">Qual ?</label>
+            <input type="text">
+        </div>
+</div>
+
