@@ -13,26 +13,28 @@ export class CreateInternshipComponent implements OnInit {
 
   addIntershipForm: FormGroup;
   AuthService: AuthService;
-  
+  teste:any;
 
   constructor(private formbuilder: FormBuilder, authService: AuthService) { 
     this.AuthService = authService;
+  
   }
 
   ngOnInit() {
 
     this.addIntershipForm = this.formbuilder.group({
       internshipVacancy:[null, Validators.required],
-      period:[null, Validators.required],
-      // morning:[false, Validators.required],
-      // afternoon:[false, Validators.required],
-      // night:[false, Validators.required],
+      periodMorning:[false, Validators.required],
+      periodAfternoon:[false, Validators.required],
+      periodNight:[false, Validators.required],
       remuneration:[false, [Validators.required]],
       valueOfRemuneration:[null, [Validators.required]],
-      benefit:[[], [Validators.required]],
+      benefit:[null, [Validators.required]],
+      benefitTransport:[null, [Validators.required]],
+      benefitMeal:[null, [Validators.required]],
       othersBenefit:[null, [Validators.required, Validators.minLength(6)]],
       technicalKnowledge:[null, [Validators.required, Validators.minLength(6)]],
-      pernosalProfile:[null, [Validators.required, Validators.minLength(6)]],
+      personalProfile:[null, [Validators.required, Validators.minLength(6)]],
       preference:[null, [Validators.required, Validators.minLength(6)]],
       schedule:[null, [Validators.required]],
       whoTalkSchedule:[null, [Validators.required, Validators.minLength(6)]],
@@ -43,6 +45,12 @@ export class CreateInternshipComponent implements OnInit {
       observations:[null],
     });
 
+  
+
+  }
+  
+  createIntership(){
+    console.log(this.addIntershipForm.value);
   }
 
 
