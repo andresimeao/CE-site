@@ -1,32 +1,130 @@
-<div class="form-group">
-    <label for="Vaga">Quais são as vagas ?</label>
-    <input type="text" class="form-control"> 
-</div>
-<div class="form-group">
-    <label for="periodos">Periodo de prestação de serviço ?</label>
-    <div class="form-control">
-            Manhã
-            <input type="checkbox" name="manhã" id="">
-            Tarde
-            <input type="checkbox" name="tarde" id="">
-            Noite
-            <input type="checkbox" name="noite" id="">
-    </div>
-</div>
+<div class="container">
+    <form [formGroup]="addIntershipForm">
 
-<div class="form-group">
-        <label for="Vaga">Havera remuneração ?</label>
-        <div class="form-control">
-            Sim
-            <input type="checkbox">
-            Não
-            <input type="checkbox">
-            Outro
-            <input type="checkbox" id="teste">
+        <div class="form-group mt-5">
+            <label for="internship-vacancy">Quais é a vaga?</label>
+            <input type="text" formControlName="internshipVacancy" name="internship-vacancy" class="form-control"> 
         </div>
-        <div *ngIf="teste == true" class="form-control">
-            <label for="qual">Qual ?</label>
-            <input type="text">
+        
+        <div class="form-group">
+            
+            <label for="periodos">Período de prestação de serviço?</label>
+            
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input formControlName="period" value="Manhã" type="checkbox" name="morning" class="form-check-input">
+                    Manhã
+                </label>    
+                <label class="form-check-label mr-2">
+                    <input formControlName="period" value="Noite" type="checkbox" name="afternoon" class="form-check-input">
+                    Tarde
+                </label>
+                <label class="form-check-label mr-2">
+                    <input formControlName="period" value="Noite" type="checkbox" name="night"  class="form-check-input">
+                    Noite
+                </label>
+            </div>
         </div>
+        
+        <div class="form-group">
+                <label for="remuneration">Havera remuneração?</label>
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                        <input type="radio" formControlName="remuneration" value="true" name="remuneration" class="form-check-input">
+                        Sim
+                    </label>
+                    <label class="form-check-label mr-2 active">
+                        <input type="radio" formControlName="remuneration" value="false" name="remuneration" class="form-check-input" [checked]="addIntershipForm.get(remuneration) == 'false'">
+                        Não
+                    </label>
+                </div>
+        </div>
+        
+        <div class="form-group" *ngIf="addIntershipForm.get('remuneration').value == 'true'">
+            <label for="remuneration-value">Qual o valor da remuneração?</label>
+            <input type="text" name="remuneration-value" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="benefit">Quais são os benefícios?</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="transportation-vouchers" value="Vale-transporte" id="" class="form-check-input">
+                    Vale-transporte
+                </label>
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="meal" value="Refeição" id="" class="form-check-input">        
+                    Refeição
+                </label>
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="other" id="" class="form-check-input">  
+                    Outros      
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="qual">Quais outros benefícios?</label>
+            <input type="text" name="others-benefit" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="technical-knowledge">Quais são os conhecimentos técnicos requeridos?</label>
+            <input type="text" name="technical-knowledge" placeholder="Detalhar" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="personal-profile">Qual é o perfil pessoal requerido?</label>
+            <input type="text" name="personal-profile" placeholder="Ex: comunicação, lidar com pessoas"  class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Tem alguma preferência?</label>
+            <input type="text" placeholder="Ex: idade, sexo" class="form-control">
+        </div>
+        
+        <div class="form-group">
+            <label for="">Solicitar agendamento por telefone?</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input type="radio" value="yes" id="" class="form-check-input">
+                    Sim
+                </label>      
+                <label class="form-check-label mr-2">
+                    <input type="radio" value="no" id="" class="form-check-input">
+                    Não
+                </label>      
+            </div>
+        </div>
+            
+        <div class="form-group">
+            <label for="">Falar com quem?</label>
+            <input type="text" name="tel" class="form-control">
+            <label for="">Telefone</label>
+            <input type="tel" class="form-control">
+            <label for="">E-mail</label>
+            <input type="email" name="email" class="form-control">
+            <label for="">Aos cuidado de ?</label>
+            <input type="text" name="" class="form-control">
+        </div>
+
+        <div class="form-group">
+            <label for="">O nome da empresa pode ser divulgada amplamente?</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input type="radio" value="yes" id="" class="form-check-input">
+                    Sim
+                </label>      
+                <label class="form-check-label mr-2">
+                    <input type="radio" value="no" id="" class="form-check-input">
+                    Não
+                </label>      
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <label for="">Observações</label>
+            <textarea name="observations" class="form-control"></textarea>
+        </div>
+    </form>    
 </div>
 
