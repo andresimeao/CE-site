@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 import { AuthService } from '../services/auth.service';
+import { IntershipService } from '../services/intership.service';
+
 
 @Component({
   selector: 'app-create-internship',
@@ -13,11 +15,13 @@ export class CreateInternshipComponent implements OnInit {
 
   addIntershipForm: FormGroup;
   AuthService: AuthService;
-  teste:any;
+  user:any;
 
-  constructor(private formbuilder: FormBuilder, authService: AuthService) { 
-    this.AuthService = authService;
-  
+  constructor(private formbuilder: FormBuilder, public authService: AuthService,
+     public intershipService:IntershipService) { 
+     this.AuthService = authService;
+     this.user = this.authService.afAuth.auth.currentUser;
+    
   }
 
   ngOnInit() {
@@ -43,6 +47,7 @@ export class CreateInternshipComponent implements OnInit {
       whoCaringForEmail:[null, [Validators.required, Validators.minLength(10)]],
       nameOfCompany:[null, [Validators.required]],
       observations:[null],
+      userId:[this.user.uid]
     });
 
   
@@ -50,7 +55,7 @@ export class CreateInternshipComponent implements OnInit {
   }
   
   createIntership(){
-    console.log(this.addIntershipForm.value);
+    this.intershipService.createIntership(this.addIntershipForm.value);
   }
 
 
