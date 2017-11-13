@@ -56,6 +56,7 @@ export class CreateInternshipComponent implements OnInit {
   
   createIntership(){
     this.intershipService.createIntership(this.addIntershipForm.value);
+    this.addIntershipForm.reset();
   }
 
 

@@ -33,7 +33,7 @@ export class IntershipService {
       userId:i.userId
     }).then((resp) =>{
       alert('Enviado com sucesso');
-
+      this.router.navigate(['/home-page-company']);
     },(error) =>{
       alert(error);
     })
