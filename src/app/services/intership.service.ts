@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class IntershipService {
-
+  interships: Observable<any[]>;
   constructor(public afDB: AngularFireDatabase, public router: Router) { }
 
   createIntership(i){
@@ -39,4 +40,9 @@ export class IntershipService {
     })
   }
   
+  getIntershipsCentral(){
+
+    this.interships = this.afDB.list('/interships').valueChanges();
+    return this.interships;
+  }
 }

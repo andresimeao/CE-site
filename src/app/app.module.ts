@@ -18,8 +18,12 @@ import { LoginComponent } from './login/login.component';
 import { HomePageCompanyComponent } from './home-page-company/home-page-company.component';
 import { CreateInternshipComponent } from './create-internship/create-internship.component';
 import { HomePageCentralComponent } from './home-page-central/home-page-central.component';
+import { ShowIntershipsCentralComponent } from './show-interships-central/show-interships-central.component';
+import { IntershipDetailComponent } from './intership-detail/intership-detail.component';
 //router
 import {routing} from './app.routing';
+
+
 
 
 
@@ -33,6 +37,8 @@ import {routing} from './app.routing';
     HomePageCompanyComponent,
     HomePageCentralComponent,
     CreateInternshipComponent,
+    ShowIntershipsCentralComponent,
+    IntershipDetailComponent,
     ],
   imports: [
     BrowserModule,

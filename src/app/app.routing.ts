@@ -6,7 +6,8 @@ import { CreateUserComponent } from './create-user/create-user.component';
 import { HomePageCompanyComponent } from './home-page-company/home-page-company.component';
 import { HomePageCentralComponent } from './home-page-central/home-page-central.component';
 import { CreateInternshipComponent } from './create-internship/create-internship.component';
-
+import { ShowIntershipsCentralComponent } from './show-interships-central/show-interships-central.component';
+import { IntershipDetailComponent } from './intership-detail/intership-detail.component';
 const APP_ROUTES: Routes =[
 
 {path:'login', component:LoginComponent},
@@ -14,7 +15,9 @@ const APP_ROUTES: Routes =[
 {path:'', component:LoginComponent},
 {path:'home-page-company', component:HomePageCompanyComponent},
 {path:'home-page-central', component:HomePageCentralComponent},
-{path:'create-internship', component:CreateInternshipComponent}
+{path:'create-internship', component:CreateInternshipComponent},
+{path:'show-interships-central', component:ShowIntershipsCentralComponent},
+{path:'show-intership-central/:id', component:IntershipDetailComponent},
 
 
 ];
