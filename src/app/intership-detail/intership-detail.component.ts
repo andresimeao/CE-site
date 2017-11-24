@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-intership-detail',
@@ -7,9 +9,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IntershipDetailComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private route: ActivatedRoute) { }
+id:any;
   ngOnInit() {
+    this.id = this.route.snapshot.paramMap.get('id');
+    console.log(this.id);
   }
-
+  
 }

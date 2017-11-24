@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 
-import { AngularFireDatabase } from 'angularfire2/database';
+import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class IntershipService {
-  interships: Observable<any[]>;
-  constructor(public afDB: AngularFireDatabase, public router: Router) { }
+  //interships:AngularFireList<any>;
+  items:any;
+  teste:any[];
+  constructor(public afDB: AngularFireDatabase, private router: Router) { }
 
   createIntership(i){
     this.afDB.database.ref('/interships/').push({
@@ -40,9 +42,21 @@ export class IntershipService {
     })
   }
   
-  getIntershipsCentral(){
+  // getIntershipsCentral(){
+    
+  //   this.items = this.afDB.database.ref('/interships/').orderByKey()
+  //   .once('value').then(res =>{
+    
+  //     res.forEach(element => {
+  //       //console.log(element.key);
+  //       this.teste = element.key;
+  //     });
+  //   })
+ 
 
-    this.interships = this.afDB.list('/interships').valueChanges();
-    return this.interships;
-  }
+  
+  //  console.log(this.teste);
+  //   return this.items;
+  // }
+
 }

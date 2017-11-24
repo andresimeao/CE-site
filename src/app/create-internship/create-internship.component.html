@@ -2,7 +2,7 @@
     <form [formGroup]="addIntershipForm" (ngSubmit)="createIntership()">
 
         <div class="form-group mt-5">
-            <label for="internship-vacancy">Quais é a vaga?</label>
+            <label for="internship-vacancy">Qual é a vaga?</label>
             <input type="text" formControlName="internshipVacancy" name="internship-vacancy" class="form-control"> 
                 <div class="alert alert-danger" role="alert" *ngIf="!addIntershipForm.get('internshipVacancy').valid && addIntershipForm.get('internshipVacancy').touched">
                         Campo Obrigatório

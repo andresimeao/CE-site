@@ -1,7 +1,7 @@
 Nome da Empresa
 <ul class="list-group">
-  <li class="list-group-item" *ngFor="let item of interships | async">
-    {{ item.internshipVacancy }}
-    <div><button [routerLink]="" type="button" class="btn btn-primary">Exibir</button></div>
+  <li class="list-group-item" *ngFor="let item of array ">
+   {{item.payload.val().internshipVacancy}}
+    <button type="button" routerLink="/show-intership-central/{{item.key}}" class="btn btn-primary">Exibir</button>
  </li>
 </ul>
