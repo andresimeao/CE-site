@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { Observable } from 'rxjs/Observable';
+import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 
 @Component({
@@ -9,11 +12,20 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class IntershipDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(private route: ActivatedRoute, private authservice:AuthService,
+    private formbuilder: FormBuilder) { }
+
 id:any;
+intership:any;
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
-    console.log(this.id);
+    let intership = this.authservice.afDB.object('/interships/' +this.id).snapshotChanges()
+    intership.forEach(element => {
+      this.intership = element
+      console.log('elemente: ', element);
+      console.log('intership: ', this.intership);
+    })
+    
   }
   
 }
