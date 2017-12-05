@@ -27,5 +27,29 @@ intership:any;
     })
     
   }
-  
+   save(form){
+    console.log(form.value);
+    
+    let teste = 'programador web'
+      this.authservice.afDB.object('/interships/'+this.id).update({
+        internshipVacancy:form.value.internshipVacancy,
+        observations:form.value.observations,
+        personalProfile:form.value.personalProfile,
+        preference:form.value.preference,
+        technicalKnowledge:form.value.technicalKnowledge,
+        valueOfRemuneration:form.value.valueOfRemuneration 
+    }).then(resp =>{
+        alert('salvo com sucesso!');
+      }).catch(error =>{
+        alert('Erro: ' + error);
+      })
+    
+  }
+
+  updateScheduleTrue(){
+    this.authservice.afDB.object('/interships/'+this.id).update({schedule:'true'});
+  }
+  updateScheduleFalse(){
+    this.authservice.afDB.object('/interships/'+this.id).update({schedule:'false'});
+  }
 }
