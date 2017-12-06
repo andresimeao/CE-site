@@ -1,38 +1,36 @@
-<form [formGroup]="addUserForm" (ngSubmit)="createUser()">
-
-  <div class="form-group" [ngClass]="toApplyCssErro('company')">
-      <label>Empresa</label>
-      <input class="form-control" formControlName="company" type="text" placeholder="Nome da empresa">
-    
-      <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('company').valid && addUserForm.get('company').touched">
-          Campo Obrigatório
+<div class="row">
+    <div class="col-sm"></div>
+    <div class="col-sm">
+        <div class="text-center mt-3 mb-3">
+            <img src="./../assets/images/logoFatec.png" alt="logo fatec">
         </div>
-    </div>
 
-    
-    <div class="form-group" [ngClass]="toApplyCssErro('name')">
-        <label>Nome</label>
-        <input class="form-control" formControlName="name" type="text"  id="name" placeholder="Nome do responsavel">
-        <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('name').valid && addUserForm.get('name').touched">
-            Campo Obrigatório
-          </div>
-      </div>
-      <div class="form-group" [ngClass]="toApplyCssErro('email')">
-          <label >Email</label>
-          <input class="form-control" type="email"  formControlName="email" id="email" placeholder="Seu Email">
-          <div class="alert alert-danger" role="alert" *ngIf="!addUserForm.get('email').valid && addUserForm.get('email').touched">
-              Campo Obrigatório
+        <form [formGroup]="addUserForm" (ngSubmit)="createUser()">
+
+            <div class="form-group" [ngClass]="toApplyCssErro('company')">
+                <input class="form-control" formControlName="company" type="text" placeholder="Nome da empresa">
+                <small class="text-danger" *ngIf="!addUserForm.get('company').valid && addUserForm.get('company').touched" role="alert">Campo obrigatório</small>
             </div>
-        </div>
-    <div class="form-group">
-        <label for="password1" >Senha</label>
-        <input class="form-control" type="password"  formControlName="password" id="password1" placeholder="Digite uma senha">
-      </div>
-      <div class="form-group">
-          <label for="password2">Repita a senha</label>
-          <input class="form-control" type="password"  formControlName="password2" id="password2" placeholder="Digite senha novamente">
-        </div>
-        
-        <button class="btn btn-primary" type="submit">Cadastrar</button>
-</form>
+            <div class="form-group" [ngClass]="toApplyCssErro('name')">
+                <input class="form-control" formControlName="name" type="text" id="name" placeholder="Nome do responsável">
+                <small class="text-danger" *ngIf="!addUserForm.get('name').valid && addUserForm.get('name').touched">Campo obrigatório</small>
+            </div>
+            <div class="form-group" [ngClass]="toApplyCssErro('email')">
+                <input class="form-control" type="email" formControlName="email" id="email" placeholder="Digite um e-mail">
+                <small class="text-danger" *ngIf="!addUserForm.get('email').valid && addUserForm.get('email').touched">Campo obrigatório</small>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" formControlName="password" id="password1" placeholder="Digite uma senha">
+                <small class="text-danger" *ngIf="!addUserForm.get('password').valid && addUserForm.get('password').touched">Campo obrigatório</small>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" formControlName="password2" id="password2" placeholder="Digite a senha novamente">
+                <small class="text-danger" *ngIf="!addUserForm.get('password2').valid && addUserForm.get('password2').touched">Campo obrigatório</small>
+            </div>
 
+            <button class="btn btn-block btn-primary mb-5" [disabled]="!addUserForm.valid" type="submit">Cadastrar</button>
+        </form>
+
+    </div>
+    <div class="col-sm"></div>
+</div>
