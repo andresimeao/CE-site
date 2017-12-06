@@ -19,7 +19,7 @@ export class IntershipService {
       periodNight:i.periodNight,
       remuneration:i.remuneration,
       valueOfRemuneration:i.valueOfRemuneration,
-      //benefit:i.benefit,
+      benefit:i.benefit,
       benefitTransport:i.benefitTransport,
       benefitMeal:i.benefitMeal,
       othersBenefit:i.othersBenefit,
@@ -33,7 +33,11 @@ export class IntershipService {
       whoCaringForEmail:i.whoCaringForEmail,
       nameOfCompany:i.nameOfCompany,
       observations:i.observations,
-      userId:i.userId
+      userId:i.userId,
+      status:0,
+      program:false,
+      semester:false
+
     }).then((resp) =>{
       alert('Enviado com sucesso');
       this.router.navigate(['/home-page-company']);

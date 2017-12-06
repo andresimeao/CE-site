@@ -1,34 +1,39 @@
-<form>
+<form #f="ngForm">
     <div class="form-group mt-5">
-        <label for="internship-vacancy">Vaga</label>
-        <input type="text" [(ngModel)]="intership?.payload.val().internshipVacancy" name="internship-vacancy" class="form-control"> 
+        <label for="internshipVacancy">Vaga</label>
+        <input type="text" [(ngModel)]="intership?.payload.val().internshipVacancy" name="internshipVacancy" class="form-control"> 
         
             <!-- <div class="alert alert-danger" role="alert" *ngIf="!addIntershipForm.get('internshipVacancy').valid && addIntershipForm.get('internshipVacancy').touched">
                     Campo Obrigatório
             </div> -->
     </div>
 
-    <div class="form-group mt-5">
-        <label for="internship-vacancy">Periodo</label>
-        <div class="form-control" *ngIf="intership?.payload.val().periodMorning === true">
-            Manhã
-        </div> 
-        <div class="form-control" *ngIf="intership?.payload.val().periodAfternoon === true">
-            Tarde
-        </div> 
-        <div class="form-control" *ngIf="intership?.payload.val().periodNight === true">
-            Noite
-        </div> 
+    <div class="form-group">
+            <label for="internshipVacancy">Periodo</label>
+        <div class="form-inline">
+            <label class="form-check-label mr-2">
+                <input [(ngModel)]="intership?.payload.val().periodMorning" value="Manhã" type="checkbox" name="periodMorning" class="form-check-input" disabled>
+                Manhã
+            </label> 
+            <label class="form-check-label mr-2">
+                <input [(ngModel)]="intership?.payload.val().periodAfternoon" value="Tarde" type="checkbox" name="periodAfternoon" class="form-check-input" disabled>
+                Tarde
+            </label> 
+            <label class="form-check-label mr-2">
+                <input [(ngModel)]="intership?.payload.val().periodNight" value="Noite" type="checkbox" name="periodNight"  class="form-check-input" disabled>
+                Noite
+            </label> 
+        </div>
     </div>
 
     <div class="form-group mt-5">
-        <label for="internship-vacancy">Remuneração</label>
-        <div *ngIf="intership?.payload.val().remuneration !== false">
+        <label for="internshipVacancy">Remuneração</label>
+        <div *ngIf="intership?.payload.val().remuneration === 'true'">
                 <input class="form-control" type="text" [(ngModel)]="intership?.payload.val().valueOfRemuneration" name="valueOfRemuneration" class="form-control"> 
     
         </div> 
-        <div class="form-control" *ngIf="intership?.payload.val().remuneration === false">
-            Não Havera remuneração
+        <div class="form-control" *ngIf="intership?.payload.val().remuneration === 'false'">
+            Não havera remuneração
         </div> 
     </div>
 
@@ -36,28 +41,31 @@
             <label for="benefit">Benefícios</label>
             <div class="form-inline">
                 <label class="form-check-label mr-2">
-                    <input type="checkbox" name="transportation-vouchers" [(ngModel)]="intership?.payload.val().benefitTransport"  value="true" id="" class="form-check-input">
+                    <input type="checkbox" name="benefitTransport" [(ngModel)]="intership?.payload.val().benefitTransport"  value="true" id="" class="form-check-input" disabled>
                     Vale-transporte
                 </label>
                 <label class="form-check-label mr-2">
-                    <input type="checkbox" name="meal" [(ngModel)]="intership?.payload.val().benefitMeal" value="true" id="" class="form-check-input">        
+                    <input type="checkbox" name="benefitMeal" [(ngModel)]="intership?.payload.val().benefitMeal" value="true" id="" class="form-check-input" disabled>        
                     Refeição
                 </label>
-                <!-- <label class="form-check-label mr-2" *ngIf="intership?.payload.val().othersBenefit !== undefined">
-                    <input type="text" name="benefit" [(ngModel)]="intership?.payload.val().othersBenefit" value="true" id="" class="form-check-input">  
-                    Outros      
-                </label> -->
+                <div class="form-group" *ngIf="intership?.payload.val().othersBenefit !== undefined">
+                        <label class="form-check-label mr-2">
+                                Outros:     
+                        </label>
+                        <input type="text" name="othersBenefit" [(ngModel)]="intership?.payload.val().othersBenefit" value="true" id="othersBenefit" class="form-check-input">  
+                </div>
+                
             </div>
         </div>
 
         <div class="form-group">
-                <label for="technical-knowledge">Conhecimentos técnicos requeridos</label>
-                <input type="text" [(ngModel)]="intership?.payload.val().technicalKnowledge" name="technical-knowledge" placeholder="Detalhar" class="form-control">
+                <label for="technicalKnowledge">Conhecimentos técnicos requeridos</label>
+                <input type="text" [(ngModel)]="intership?.payload.val().technicalKnowledge" name="technicalKnowledge" placeholder="Detalhar" class="form-control">
         </div>
 
         <div class="form-group">
-                <label for="personal-profile">Qual é o perfil pessoal requerido</label>
-                <input type="text" name="personal-profile" [(ngModel)]="intership?.payload.val().personalProfile" placeholder="Ex: comunicação, lidar com pessoas"  class="form-control">
+                <label for="personalProfile">Qual é o perfil pessoal requerido</label>
+                <input type="text" name="personalProfile" [(ngModel)]="intership?.payload.val().personalProfile" placeholder="Ex: comunicação, lidar com pessoas"  class="form-control">
         </div>
 
         <div class="form-group">
@@ -66,12 +74,41 @@
         </div>
 
         <div class="form-group">
+                <label for="">Agendamento por telefone</label>
+                <label class="form-check-label mr-2">
+                    <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" value="true" id="" name="schedule"class="form-check-input" disabled>
+                    Sim
+                </label>      
+                <label class="form-check-label mr-2">
+                    <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" value="false" id="" name="schedule" class="form-check-input"disabled>
+                    Não
+                </label>
+        </div>
+        <div class="form-group" *ngIf="intership?.payload.val().schedule === true|| sim == true">
+            <label for="" >Farlar com:</label>
+            <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" name="tel" class="form-control">
+            <label for="">Telefone:</label>
+            <input type="tel"  [(ngModel)]="intership?.payload.val().phone"class="form-control">
+            <label for="">E-mail:</label>
+            <input type="email" [(ngModel)]="intership?.payload.val().email" name="email" class="form-control">
+            <label for="">Aos cuidado de:</label>
+            <input type="text" [(ngModel)]="intership?.payload.val().whoCaringForEmail" name="whoCaringForEmail" class="form-control">
+        </div>
+
+        <div class="form-group">
                 <label for="">Observações</label>
                 <textarea name="observations" [(ngModel)]="intership?.payload.val().observations" class="form-control"></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Salvar</button>
+        <!-- <div class="form-group">
+                <label for="">Curso:</label>
+                <select [(ngModel)]="semester">
+                    <option *ngFor="let i of optionSemester" [value]="i.value">{{i.name}}</option>
+                </select>
+        </div> -->
+        Semestre selecionado{{semester}}
+        <button (click)="save(f)" type="submit" class="btn btn-primary">Salvar</button>
         <button type="submit" class="btn btn-primary">Liberar</button>
-        <button type="submit" class="btn btn-danger">Excluir</button>
+        <button  type="submit" class="btn btn-danger">Excluir</button>
 
 </form>
 

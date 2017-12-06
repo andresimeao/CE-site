@@ -13,7 +13,7 @@ export class AppComponent {
   items:Observable<any[]>;
   
         constructor(public afDB: AngularFireDatabase, public db: AngularFirestore) {
-       this.items = this.afDB.list('users').valueChanges()
+
        
         }
 
