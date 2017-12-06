@@ -16,7 +16,11 @@ export class IntershipDetailComponent implements OnInit {
     private formbuilder: FormBuilder) { }
 
 id:any;
+semester:any = null;
+program:any = '';
 intership:any;
+optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{name:'AGRO',velue:'AGRO'}]
+
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     let intership = this.authservice.afDB.object('/interships/' +this.id).snapshotChanges()
@@ -28,8 +32,7 @@ intership:any;
     
   }
    save(form){
-    console.log(form.value);
-    
+     console.log('formulario: ',form.value)
     let teste = 'programador web'
       this.authservice.afDB.object('/interships/'+this.id).update({
         internshipVacancy:form.value.internshipVacancy,
@@ -51,5 +54,19 @@ intership:any;
   }
   updateScheduleFalse(){
     this.authservice.afDB.object('/interships/'+this.id).update({schedule:'false'});
+  }
+
+  release():void{
+
+    this.authservice.afDB.object('/interships/'+this.id).update({
+      program:this.program,
+      semester: this.semester
+
+  }).then(resp =>{
+      alert('salvo com sucesso!');
+    }).catch(error =>{
+      alert('Erro: ' + error);
+    })
+
   }
 }

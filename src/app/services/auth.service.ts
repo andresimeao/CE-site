@@ -16,6 +16,7 @@ export class AuthService {
   getStatusUser(id){
 
     let user = this.afDB.database.ref('/users/' + id)
+
     
       user.on('value', snapshot =>{
         
@@ -30,13 +31,14 @@ export class AuthService {
   login(user){
 
     this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password).then(Resp =>{
-      alert('Usuario logado com sucesso: ' + Resp.uid);
      let status =  this.getStatusUser(Resp.uid);
      switch(status){
        case 1:
+       alert('Usuario logado com sucesso: ' + Resp.uid);
        this.router.navigate(['/home-page-central']);
        break;
        case 2: 
+       alert('Usuario logado com sucesso: ' + Resp.uid);
        this.router.navigate(['/home-page-company']);
        break;
      }

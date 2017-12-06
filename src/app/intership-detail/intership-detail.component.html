@@ -99,6 +99,13 @@
                 <label for="">Observações</label>
                 <textarea name="observations" [(ngModel)]="intership?.payload.val().observations" class="form-control"></textarea>
         </div>
+        <!-- <div class="form-group">
+                <label for="">Curso:</label>
+                <select [(ngModel)]="semester">
+                    <option *ngFor="let i of optionSemester" [value]="i.value">{{i.name}}</option>
+                </select>
+        </div> -->
+        Semestre selecionado{{semester}}
         <button (click)="save(f)" type="submit" class="btn btn-primary">Salvar</button>
         <button type="submit" class="btn btn-primary">Liberar</button>
         <button  type="submit" class="btn btn-danger">Excluir</button>
