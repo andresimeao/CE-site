@@ -99,16 +99,29 @@
                 <label for="">Observações</label>
                 <textarea name="observations" [(ngModel)]="intership?.payload.val().observations" class="form-control"></textarea>
         </div>
-        <!-- <div class="form-group">
-                <label for="">Curso:</label>
-                <select [(ngModel)]="semester">
-                    <option *ngFor="let i of optionSemester" [value]="i.value">{{i.name}}</option>
-                </select>
-        </div> -->
-        Semestre selecionado{{semester}}
-        <button (click)="save(f)" type="submit" class="btn btn-primary">Salvar</button>
-        <button type="submit" class="btn btn-primary">Liberar</button>
-        <button  type="submit" class="btn btn-danger">Excluir</button>
-
 </form>
+<div class="form-group mt-5">
+        Curso:   
+        <select class="form-control" [(ngModel)]="program" name="" id="" required>
+            <option velue="ads">ads</option>
+            <option velue="info">info</option>
+            <option velue="agro">agro</option>
+        </select>
+    </div>
+<div class="form-group mt-5">
+        Semestre:   
+        <select class="form-control" [(ngModel)]="semester" name="" id="" required>
+            <option velue="1">1</option>
+            <option velue="2">2</option>
+            <option velue="3">3</option>
+            <option velue="4">4</option>
+            <option velue="5">5</option>
+            <option velue="6">6</option>
+        </select>
+    </div>
+<button (click)="save(f)" type="submit" class="btn btn-primary">Salvar</button>
+<button (click)="release()" type="submit" class="btn btn-primary">Liberar</button>
+<button  type="submit" class="btn btn-danger">Excluir</button>
+
+
 

@@ -3,6 +3,10 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
+import { Route } from '@angular/router/src/config';
+
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -13,10 +17,10 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 export class IntershipDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private authservice:AuthService,
-    private formbuilder: FormBuilder) { }
+    private formbuilder: FormBuilder, public router:Router) {}
 
 id:any;
-semester:any = null;
+semester:any;
 program:any = '';
 intership:any;
 optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{name:'AGRO',velue:'AGRO'}]
@@ -57,13 +61,15 @@ optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{nam
   }
 
   release():void{
-
+    let rot = this;
     this.authservice.afDB.object('/interships/'+this.id).update({
       program:this.program,
-      semester: this.semester
+      semester: this.semester,
+      status: 1
 
   }).then(resp =>{
-      alert('salvo com sucesso!');
+      alert('Liberado com sucesso !');
+      rot.router.navigate(['/show-interships-central']);
     }).catch(error =>{
       alert('Erro: ' + error);
     })
