@@ -76,19 +76,19 @@
         <div class="form-group">
                 <label for="">Agendamento por telefone</label>
                 <label class="form-check-label mr-2">
-                    <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" value="true" id="" name="schedule"class="form-check-input" disabled>
+                    <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="'true'" id="" name="schedule"class="form-check-input">
                     Sim
                 </label>      
                 <label class="form-check-label mr-2">
-                    <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" value="false" id="" name="schedule" class="form-check-input"disabled>
+                    <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="'false'" id="" name="schedule" class="form-check-input">
                     Não
                 </label>
         </div>
-        <div class="form-group" *ngIf="intership?.payload.val().schedule === true|| sim == true">
+        <div class="form-group" *ngIf="intership?.payload.val().schedule == 'true' || sim == 'true'">
             <label for="" >Farlar com:</label>
-            <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" name="tel" class="form-control">
+            <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" name="whoTalkSchedule" class="form-control">
             <label for="">Telefone:</label>
-            <input type="tel"  [(ngModel)]="intership?.payload.val().phone"class="form-control">
+            <input type="text"  [(ngModel)]="intership?.payload.val().phone"  name="phone" class="form-control">
             <label for="">E-mail:</label>
             <input type="email" [(ngModel)]="intership?.payload.val().email" name="email" class="form-control">
             <label for="">Aos cuidado de:</label>

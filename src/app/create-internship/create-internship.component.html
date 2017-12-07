@@ -123,12 +123,12 @@
             
         <div class="form-group" *ngIf="addIntershipForm.get('schedule').value == 'true'">
             <label for="">Falar com quem?</label>
-            <input type="text" formControlName="whoTalkSchedule" name="tel" class="form-control">
+            <input type="text" formControlName="whoTalkSchedule" name="whoTalkSchedule" class="form-control">
                 <div class="alert alert-danger" role="alert" *ngIf="!addIntershipForm.get('whoTalkSchedule').valid && addIntershipForm.get('whoTalkSchedule').touched">
                     Campo obrigatório
                 </div>
             <label for="">Telefone</label>
-            <input type="tel"  formControlName="phone"class="form-control">
+            <input type="tel"  formControlName="phone" name="phone" class="form-control">
             <div class="alert alert-danger" role="alert" *ngIf="!addIntershipForm.get('phone').valid && addIntershipForm.get('phone').touched">
                     Campo obrigatório
                 </div>

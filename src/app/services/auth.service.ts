@@ -35,7 +35,7 @@ export class AuthService {
      switch(status){
        case 1:
        alert('Usuario logado com sucesso: ' + Resp.uid);
-       this.router.navigate(['/home-page-central']);
+       this.router.navigate(['/show-interships-central']);
        break;
        case 2: 
        alert('Usuario logado com sucesso: ' + Resp.uid);

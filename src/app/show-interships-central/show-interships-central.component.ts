@@ -13,7 +13,7 @@ export class ShowIntershipsCentralComponent implements OnInit {
   
   constructor(public intershipService: IntershipService) { }
   //interships:Observable<AngularFireAction<DatabaseSnapshot>[]>;
-  interships: Observable<any[]>;
+  interships:any;
   //interships:any[];
   //interships:any;
   teste:Observable<any>;
@@ -21,7 +21,8 @@ export class ShowIntershipsCentralComponent implements OnInit {
   array:any;
   ngOnInit() {
 
-    this.interships = this.intershipService.afDB.list('/interships').snapshotChanges() 
+    this.interships = this.intershipService.afDB.list('/interships', ref => ref.orderByChild('status').equalTo(0)).snapshotChanges()
+    console.log(this.interships)
     this.interships.forEach(array => {
       console.log('Array: ',array);
       this.array = array;

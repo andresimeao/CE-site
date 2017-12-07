@@ -40,7 +40,7 @@ export class CreateInternshipComponent implements OnInit {
       technicalKnowledge:[null, [Validators.required, Validators.minLength(6)]],
       personalProfile:[null, [Validators.required, Validators.minLength(6)]],
       preference:[null, [Validators.required, Validators.minLength(6)]],
-      schedule:[null, [Validators.required]],
+      schedule:[false, [Validators.required]],
       whoTalkSchedule:[null, [Validators.required, Validators.minLength(6)]],
       phone:[null, [Validators.required, Validators.minLength(10)]],
       email:[null, [Validators.required, Validators.minLength(10)]],
