@@ -36,7 +36,8 @@ export class IntershipService {
       userId:i.userId,
       status:0,
       program:false,
-      semester:false
+      semester:false,
+      cancellationReason:false
 
     }).then((resp) =>{
       alert('Enviado com sucesso');

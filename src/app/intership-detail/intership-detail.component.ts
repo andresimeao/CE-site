@@ -18,7 +18,8 @@ export class IntershipDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private authservice:AuthService,
     private formbuilder: FormBuilder, public router:Router) {}
-
+cancellationReason:any;
+observation:any;
 id:any;
 semester:any;
 program:any = '';
@@ -74,5 +75,26 @@ optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{nam
       alert('Erro: ' + error);
     })
 
+  }
+
+  
+  canceled(obs):void{
+
+    console.log(obs);
+    let rot = this;
+    this.authservice.afDB.object('/interships/'+this.id).update({
+      status: 2,
+      cancellationReason:obs
+
+  }).then(resp =>{
+      alert('Cancelado com sucesso !');
+      rot.router.navigate(['/show-interships-central']);
+    }).catch(error =>{
+      alert('Erro: ' + error);
+    })
+  }
+
+  showObservation():void{
+    this.observation = true;
   }
 }

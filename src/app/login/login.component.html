@@ -4,16 +4,16 @@
         <div class="mt-5 mb-5 text-center">
             <img class="img-fluid" src="./../assets/images/logoFatec.png" alt="logo fatec">
         </div>
-        <form name="login" [formGroup]="loginUserForm" (ngSubmit)="login()" class="form-signin">
+        <form name="login" [formGroup]="loginUserForm"  class="form-signin">
             <div class="form-group">
                 <input type="email" formControlName="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="E-mail" required>
-                <small *ngIf="!loginUserForm.get('email').valid && loginUserForm.get('email').touched" id="emailHelp" class="text-danger">Campo obrigatório</small>
+                <small *ngIf="!loginUserForm.get('email').valid && loginUserForm.get('email').touched"  class="text-danger">Campo obrigatório</small>
             </div>
             <div class="form-group">
                 <input type="password" formControlName="password" class="form-control" ng-minlength="6" id="exampleInputPassword1" placeholder="Senha" required>
-                <small *ngIf="!loginUserForm.get('password').valid && loginUserForm.get('password').touched" id="emailHelp" class="text-danger">Campo obrigatório</small>
+                <small *ngIf="!loginUserForm.get('password').valid && loginUserForm.get('password').touched" class="text-danger">Campo obrigatório</small>
             </div>
-            <button type="submit" [disabled]="!loginUserForm.valid" class="btn btn-block btn-primary">Entrar</button>
+            <button (click)="login()" [disabled]="!loginUserForm.valid" class="btn btn-block btn-primary">Entrar</button>
             <div class="text-center p-3">Não tem uma conta ainda? Cadastre-se <a class="font-weight-bold" routerLink="/create-user">aqui!</a></div>
         </form>
     </div>
