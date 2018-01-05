@@ -122,11 +122,11 @@
     <div *ngIf="observation === true" class="form-group">
             <label for="">Motivo do cancelamento ?</label>
             <textarea name="observations" [(ngModel)]="cancellationReason" class="form-control"></textarea>
-            <button  (click)="canceled(cancellationReason)" type="submit" class="btn btn-danger">Enviar</button>
+            <button  (click)="disapproved(cancellationReason)" type="submit" class="btn btn-danger">Enviar</button>
             
     </div>
 <button (click)="save(f)" type="submit" class="btn btn-primary">Salvar</button>
-<button (click)="release()" type="submit" class="btn btn-primary">Liberar</button>
+<button (click)="approved()" type="submit" class="btn btn-primary">Liberar</button>
 <button  (click)="showObservation()" type="submit" class="btn btn-danger">Cancelar</button>
 
 

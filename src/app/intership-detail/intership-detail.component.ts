@@ -61,11 +61,13 @@ optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{nam
     this.authservice.afDB.object('/interships/'+this.id).update({schedule:'false'});
   }
 
-  release():void{
+  
+  approved():void{
     let rot = this;
     this.authservice.afDB.object('/interships/'+this.id).update({
       program:this.program,
       semester: this.semester,
+      cancellationReason:false,
       status: 1
 
   }).then(resp =>{
@@ -78,7 +80,7 @@ optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{nam
   }
 
   
-  canceled(obs):void{
+  disapproved(obs):void{
 
     console.log(obs);
     let rot = this;

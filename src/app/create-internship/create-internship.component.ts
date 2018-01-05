@@ -16,7 +16,7 @@ export class CreateInternshipComponent implements OnInit {
   addIntershipForm: FormGroup;
   AuthService: AuthService;
   user:any;
-
+  schedule:any = {phone:'', email:'', whoCaringForEmail:'' };
   constructor(private formbuilder: FormBuilder, public authService: AuthService,
      public intershipService:IntershipService) { 
      this.AuthService = authService;
@@ -28,36 +28,44 @@ export class CreateInternshipComponent implements OnInit {
 
     this.addIntershipForm = this.formbuilder.group({
       internshipVacancy:[null, Validators.required],
-      periodMorning:[false, Validators.required],
-      periodAfternoon:[false, Validators.required],
-      periodNight:[false, Validators.required],
-      remuneration:[false, [Validators.required]],
-      valueOfRemuneration:[null, [Validators.required]],
-      benefit:[null, [Validators.required]],
-      benefitTransport:[null, [Validators.required]],
-      benefitMeal:[null, [Validators.required]],
-      othersBenefit:[null, [Validators.required, Validators.minLength(6)]],
-      technicalKnowledge:[null, [Validators.required, Validators.minLength(6)]],
-      personalProfile:[null, [Validators.required, Validators.minLength(6)]],
-      preference:[null, [Validators.required, Validators.minLength(6)]],
-      schedule:[false, [Validators.required]],
-      whoTalkSchedule:[null, [Validators.required, Validators.minLength(6)]],
-      phone:[null, [Validators.required, Validators.minLength(10)]],
-      email:[null, [Validators.required, Validators.minLength(10)]],
-      whoCaringForEmail:[null, [Validators.required, Validators.minLength(10)]],
-      nameOfCompany:[null, [Validators.required]],
+      periodMorning:[false],
+      periodAfternoon:[false],
+      periodNight:[false],
+      remuneration:[false, Validators.required],
+      valueOfRemuneration:[null, Validators.required ],
+      benefit:[null],
+      benefitTransport:[null],
+      benefitMeal:[null],
+      othersBenefit:[null],
+      technicalKnowledge:[null, Validators.required],
+      personalProfile:[null, Validators.required],
+      preference:[null, Validators.required],
+      schedule:[false],
+      whoTalkSchedule:[null],
+      phone:[null],
+      email:[null],
+      whoCaringForEmail:[null],
+      nameOfCompany:[null, Validators.required],
       observations:[null],
       userId:[this.user.uid]
     });
 
+    
   
 
   }
   
-  createIntership(){
-    this.intershipService.createIntership(this.addIntershipForm.value);
-    this.addIntershipForm.reset();
+  createIntership(schedule):void{
+    console.log(schedule);
+    if(this.addIntershipForm.value.periodMorning === false && this.addIntershipForm.value.periodAfternoon === false && this.addIntershipForm.value.periodNight === false){
+      alert('Por favor insira um periodo !');
+    }else if (this.addIntershipForm.value.benefitTransport === null && this.addIntershipForm.value.benefitMeal === null && this.addIntershipForm.value.benefit === null) {
+        alert('Por favor insira um beneficio !');
+      }else{
+        this.intershipService.createIntership(this.addIntershipForm.value);
+        this.addIntershipForm.reset();
+      }
+    }   
   }
 
 
-}
