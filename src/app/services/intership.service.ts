@@ -12,6 +12,7 @@ export class IntershipService {
   constructor(public afDB: AngularFireDatabase, private router: Router) { }
 
   createIntership(i){
+    console.log(i);
     this.afDB.database.ref('/interships/').push({
       internshipVacancy:i.internshipVacancy,
       periodMorning:i.periodMorning,

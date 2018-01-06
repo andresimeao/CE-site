@@ -7,12 +7,13 @@ import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
 
 import { LoginComponent } from '.././login/login.component';
+import { error } from 'util';
 
 @Injectable()
 export class AuthService {
   user:Observable<any>
   status:any;
-  constructor(public afAuth:AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
+  constructor(public afAuth:AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) {}
 
   getStatusUser(id){
     
@@ -26,48 +27,53 @@ export class AuthService {
   }
 
   public login(user):void{
-
-    this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password)
-    .then(response =>{
-      //let status = this.getStatusUser(response.uid);
-
-      this.user = this.afDB.object('/users/' + response.uid).valueChanges()
-      this.user.forEach(element => {
-        this.status = element.status;
-      }).then(response=>{
-        
-      });
-
-     switch(this.status){
-       case 1:
-       
-       alert('Usuario logado com sucesso: ' + response.uid);
-       this.router.navigate(['/show-interships-central']);
-       break;
-       case 2: 
-       alert('Usuario logado com sucesso: ' + response.uid);
-       this.router.navigate(['/home-page-company']);
-       break;
-       default:
-       console.log(status);
-     }
-
-     },error =>{
-      switch (error.code) {
-            case 'auth/invalid-email': alert('Endereço de e-mail invalido');   
+    this.afAuth.auth.setPersistence( firebase.auth.Auth.Persistence.LOCAL).then( res =>{
+     return this.afAuth.app.auth().signInWithEmailAndPassword(user.email, user.password)
+      .then(response =>{
+        //let status = this.getStatusUser(response.uid);
+  
+        this.user = this.afDB.object('/users/' + response.uid).valueChanges()
+        this.user.forEach(element => {
+          this.status = element.status;
+        }).then(response=>{
+          
+        });
+  
+       switch(this.status){
+         case 1:
+         
+         alert('Usuario logado com sucesso: ' + response.uid);
+         this.router.navigate(['/show-interships-central']);
+         break;
+         case 2: 
+         alert('Usuario logado com sucesso: ' + response.uid);
+         this.router.navigate(['/home-page-company']);
+         break;
+         default:
+         console.log(status);
+       }
+  
+       },error =>{
+        switch (error.code) {
+              case 'auth/invalid-email': alert('Endereço de e-mail invalido');   
+                break;
+      
+              case 'auth/user-disabled' : alert('Email desativado');
               break;
-    
-            case 'auth/user-disabled' : alert('Email desativado');
-            break;
-    
-            case 'auth/user-not-found': alert('Conta de usuario não encontrado');
-            break;
-    
-            case 'auth/wrong-password': alert('endereço de email ou senha invalidos');
-            break;
-          }
+      
+              case 'auth/user-not-found': alert('Conta de usuario não encontrado');
+              break;
+      
+              case 'auth/wrong-password': alert('endereço de email ou senha invalidos');
+              break;
+            }
+  
+       });
 
-     });
+          }).catch(error =>{
+            alert('Erro de sessão: ' + error);
+          });
+    
     // }).catch(erro =>{
     //   switch (erro.code) {
     //     case 'auth/invalid-email': alert('Endereço de e-mail invalido');   
@@ -79,10 +85,7 @@ export class AuthService {
     //     case 'auth/user-not-found': alert('Conta de usuario não encontrado');
     //     break;
 
-    //     case 'auth/wrong-password': alert('endereço de email ou senha invalidos');
-    //     break;
-    //   }
-    // });
+    //     case 'auth/wrong-password': alert('endereço de email ou senha i
      
   }
   createEmailAndPassword(user){
