@@ -18,51 +18,48 @@ export class CreateInternshipComponent implements OnInit {
   schedule:any = {phone:'', email:'', whoCaringForEmail:'' };
   constructor(public authService: AuthService,
      public intershipService:IntershipService) { 
-     this.AuthService = authService;
-     this.user = this.authService.afAuth.auth.currentUser;
-     this.id = this.user.uid;
-     
-    
+      this.AuthService = authService; 
   }
  internship:any = {
-  internshipVacancy:'',
+  internshipVacancy:null,
   periodMorning:false,
   periodAfternoon:false,
   periodNight:false,
   remuneration:false,
-  valueOfRemuneration:'',
-  benefit:'',
-  benefitTransport:'',
-  benefitMeal:'',
-  othersBenefit:'',
-  technicalKnowledge:'',
-  personalProfile:'',
-  preference:'',
+  valueOfRemuneration:null,
+  benefit:null,
+  benefitTransport:null,
+  benefitMeal:null,
+  othersBenefit:null,
+  technicalKnowledge:null,
+  personalProfile:null,
+  preference:null,
   schedule:false,
-  whoTalkSchedule:'',
-  phone:'',
-  email:'',
-  whoCaringForEmail:'',
-  nameOfCompany:'',
-  observations:'',
+  whoTalkSchedule:null,
+  phone:null,
+  email:null,
+  whoCaringForEmail:null,
+  nameOfCompany:null,
+  observations:null,
   userId:this.id
  }
   ngOnInit() {
-
+    
+    this.user = this.authService.afAuth.auth.currentUser;
+    this.id = this.user.uid;
   
   }
   
-  createIntership(f):void{
-    console.log(f);
-         this.intershipService.createIntership(f.value);
-    // if(this.addIntershipForm.value.periodMorning === false && this.addIntershipForm.value.periodAfternoon === false && this.addIntershipForm.value.periodNight === false){
-    //   alert('Por favor insira um periodo !');
-    // }else if (this.addIntershipForm.value.benefitTransport === null && this.addIntershipForm.value.benefitMeal === null && this.addIntershipForm.value.benefit === null) {
-    //     alert('Por favor insira um beneficio !');
-    //   }else{
-    //     this.intershipService.createIntership(f);
-    //     this.addIntershipForm.reset();
-    //   }
+  createIntership():void{
+    this.internship.userId = this.id;
+     if(this.internship.periodMorning === false && this.internship.periodAfternoon === false && this.internship.periodNight === false){
+       alert('Por favor insira um periodo !');
+     }else if (this.internship.benefitTransport === null && this.internship.benefitMeal === null && this.internship.benefit === null) {
+         alert('Por favor insira um beneficio !');
+       }else{
+         this.intershipService.createIntership(this.internship);
+         this.internship.reset();
+       }
     }   
   }
 
