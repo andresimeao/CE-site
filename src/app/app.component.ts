@@ -7,6 +7,16 @@ import { AuthService } from './services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    
-        constructor() { }
+  
+  showMenu: boolean = false;
+
+  constructor(private authService: AuthService) { 
+
+  }
+
+  ngOnInit(){
+    this.authService.showMenu.subscribe(
+      showM => this.showMenu = showM
+    );
+  }
 }
