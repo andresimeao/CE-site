@@ -10,24 +10,22 @@ import {FormGroup, FormBuilder, Validators} from '@angular/forms'
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  loginUserForm: FormGroup;
+  user:any={email:null, password:null };
+  
 
 
   constructor(public auth:AuthService, public formbuilder: FormBuilder) {
    
    }
-
+   
   ngOnInit() {
 
-    this.loginUserForm = this.formbuilder.group({
-      email:[null, [Validators.email, Validators.required]],
-      password:[null,[Validators.required]]
-    })
+   
 
   }
   login(){
     
-    this.auth.login(this.loginUserForm.value)
+    this.auth.login(this.user);
     
   }
 }

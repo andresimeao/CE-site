@@ -21,8 +21,8 @@ export class IntershipDetailComponent implements OnInit {
 cancellationReason:any;
 observation:any;
 id:any;
-semester:any;
-program:any = '';
+semester:any=null;
+program:any=null;
 intership:any;
 optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{name:'AGRO',velue:'AGRO'}]
 
