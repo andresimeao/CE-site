@@ -1,7 +1,35 @@
-Nome da Empresa
+<!-- Nome da Empresa
 <ul class="list-group">
   <li class="list-group-item" *ngFor="let item of array ">
    {{item.payload.val().internshipVacancy}}
     <button type="button" routerLink="/show-intership-central/{{item.key}}" class="btn btn-primary">Exibir</button>
  </li>
-</ul>
+</ul> -->
+
+<div class="row">
+    <div class="col-md">
+        <div class="table-container">
+            <table class="table table-filter">
+                <!-- <thead>
+                    <h4>Lista de estágios</h4>
+                </thead> -->
+                <tbody>
+                    <tr *ngFor="let item of array">
+                        <td routerLink="/show-intership-central/{{item.key}}">
+                            <div class="media">
+                                <div class="media-body">
+                                    <span class="media-meta pull-right">Febrero 13, 2016</span>
+                                    <h4 class="title">
+                                        {{item.payload.val().internshipVacancy}}
+                                        <span class="pull-right pendiente">(Pendente)</span>
+                                    </h4>
+                                    <p class="summary">Nome empresa</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
