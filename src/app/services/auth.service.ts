@@ -20,7 +20,7 @@ export class AuthService {
   status: any;
 
   private authenticatedUser: boolean = false;
-  
+
   showMenu = new EventEmitter<boolean>();
 
   constructor(public afAuth: AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
@@ -47,30 +47,31 @@ export class AuthService {
           this.showMenu.emit(true);
 
           this.user = this.afDB.object('/users/' + response.uid).valueChanges()
+
           this.user.forEach(element => {
             this.status = element.status;
-          }).then(response => {
+
+            switch (this.status) {
+              case 1:
+
+                alert('Usuario logado com sucesso: ' + response.uid);
+                this.router.navigate(['/show-interships-central']);
+                break;
+              case 2:
+                alert('Usuario logado com sucesso: ' + response.uid);
+                this.router.navigate(['/home-page-company']);
+                break;
+              default:
+                console.log(status);
+            }
 
           });
 
-          switch (this.status) {
-            case 1:
-
-              alert('Usuario logado com sucesso: ' + response.uid);
-              this.router.navigate(['/show-interships-central']);
-              break;
-            case 2:
-              alert('Usuario logado com sucesso: ' + response.uid);
-              this.router.navigate(['/home-page-company']);
-              break;
-            default:
-              console.log(status);
-          }
 
         }, error => {
 
           this.authenticatedUser = false;
-          
+
           this.showMenu.emit(false);
 
           switch (error.code) {
