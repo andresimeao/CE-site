@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 //services
 import { AuthService } from './services/auth.service';
 import { IntershipService } from './services/intership.service';
+import { MessagingService } from './services/messaging.service'
 //Modules
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
@@ -51,7 +52,7 @@ import {routing} from './app.routing';
     FormsModule
 
   ],
-  providers: [AuthService, IntershipService],
+  providers: [AuthService, IntershipService, MessagingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
