@@ -88,13 +88,14 @@ table thead tr th {
     position: absolute;
     width: 215px;
     z-index: 1;
+    transition: width .8s ease;
 }
 
 .sidebar .user-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 80px 0 40px;
+    margin: 110px 0 40px;
 }
 
 .sidebar .user-info img {
@@ -158,10 +159,11 @@ table thead tr th {
 }
 
 .sidebar .nav .nav-item a.nav-link {
-    color: #636c72;
+    color: color #636c72;
     padding: 1em;
     white-space: nowrap;
     font-size: 13px;
+    display: flex !important;
 }
 
 .sidebar .nav .nav-item a.nav-link .fa:first-child {
@@ -257,25 +259,63 @@ table thead tr th {
 }
 
 
+/* style for off-canvas menu*/
+
+@media screen and (max-width: 991px) {
+    .row-offcanvas {
+        position: relative;
+        -webkit-transition: all 0.25s ease-out;
+        -o-transition: all 0.25s ease-out;
+        transition: all 0.25s ease-out;
+    }
+    .row-offcanvas.row-offcanvas-right {
+        right: 0;
+    }
+    .row-offcanvas.row-offcanvas-right .sidebar-offcanvas {
+        right: -100%;
+    }
+    .row-offcanvas.row-offcanvas-right.active {
+        right: 50%;
+    }
+    .row-offcanvas.row-offcanvas-right.active .sidebar-offcanvas {
+        right: -50%;
+    }
+    .row-offcanvas.row-offcanvas-left {
+        left: 0;
+    }
+    .row-offcanvas.row-offcanvas-left .sidebar-offcanvas {
+        left: -100%;
+    }
+    .row-offcanvas.row-offcanvas-left.active {
+        left: 50%;
+    }
+    .row-offcanvas.row-offcanvas-left.active .sidebar-offcanvas {
+        left: -50%;
+    }
+    .row-offcanvas .sidebar-offcanvas {
+        position: absolute;
+        top: 0;
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .row-offcanvas.row-offcanvas-right.active {
+        right: 100%;
+    }
+    .row-offcanvas.row-offcanvas-right.active .sidebar-offcanvas {
+        right: -100%;
+    }
+    .row-offcanvas .sidebar-offcanvas {
+        width: 100%;
+    }
+}
+
+
 /* fim sidebar */
 
 
 /* navbar */
-
-
-/* .navbar .search {
-    width: 200px;
-    border-radius: 100px;
-    font-size: 14px;
-    transition-duration: 0.4s;
-    transition-timing-function: ease;
-    border: none;
-    min-height: 0;
-}
-
-.navbar .search:focus {
-    width: 240px;
-} */
 
 .navbar .navbar-brand-wrapper {
     width: 215px;

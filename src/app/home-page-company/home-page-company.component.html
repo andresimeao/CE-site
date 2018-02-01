@@ -3,65 +3,47 @@
         <button routerLink="/create-internship" type="button" class="btn btn-info">Adicionar Estagio</button>
     </div>
 </div>
-<div class="row">
-    <section style="width: 100%">
-        <div class="col-md">
-            <!-- <div class="pull-right">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-success btn-filter" data-target="pagado">Pagado</button>
-                            <button type="button" class="btn btn-warning btn-filter" data-target="pendiente">Pendiente</button>
-                            <button type="button" class="btn btn-danger btn-filter" data-target="cancelado">Cancelado</button>
-                            <button type="button" class="btn btn-default btn-filter" data-target="all">Todos</button>
-                        </div>
-                    </div> -->
-            <div class="table-container">
-                <table class="table table-filter">
+
+<div class="card-deck">
+    <div class="card col-lg-12 px-0 mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Vagas de estágio cadastradas</h5>
+            <div class="table-responsive">
+                <table class="table center-aligned-table">
+                    <thead>
+                        <tr class="text-primary">
+                            <th>Vaga</th>
+                            <th>Data</th>
+                            <th>Status</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
                     <tbody>
-                        <tr data-status="pagado">
-                            <td>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                        <h4 class="title">
-                                            Lorem Impsum
-                                            <span class="pull-right pagado">(Autorizado)</span>
-                                        </h4>
-                                        <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                    </div>
-                                </div>
-                            </td>
+                        <tr class="">
+                            <td>Iphone 7</td>
+                            <td>12 May 2017</td>
+                            <td><label class="badge badge-success">Approved</label></td>
+                            <td><a href="#" class="btn btn-outline-primary btn-sm">View Order</a></td>
+                            <td><a href="#" class="btn btn-outline-warning btn-sm">Cancel</a></td>
                         </tr>
-                        <tr data-status="pendiente">
-                            <td>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                        <h4 class="title">
-                                            Lorem Impsum
-                                            <span class="pull-right pendiente">(Pendente)</span>
-                                        </h4>
-                                        <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                    </div>
-                                </div>
-                            </td>
+                        <tr class="">
+                            <td>Galaxy S8</td>
+                            <td>15 May 2017</td>
+                            <td><label class="badge badge-warning">Pending</label></td>
+                            <td><a href="#" class="btn btn-outline-primary btn-sm">View Order</a></td>
+                            <td><a href="#" class="btn btn-outline-warning btn-sm">Cancel</a></td>
                         </tr>
-                        <tr data-status="cancelado">
-                            <td>
-                                <div class="media">
-                                    <div class="media-body">
-                                        <span class="media-meta pull-right">Febrero 13, 2016</span>
-                                        <h4 class="title">
-                                            Lorem Impsum
-                                            <span class="pull-right cancelado">(Cancelado)</span>
-                                        </h4>
-                                        <p class="summary">Ut enim ad minim veniam, quis nostrud exercitation...</p>
-                                    </div>
-                                </div>
-                            </td>
+                        <tr class="">
+                            <td>Google Pixel</td>
+                            <td>17 May 2017</td>
+                            <td><label class="badge badge-danger">Rejected</label></td>
+                            <td><a href="#" class="btn btn-outline-primary btn-sm">View Order</a></td>
+                            <td><a href="#" class="btn btn-outline-warning btn-sm">Cancel</a></td>
                         </tr>
                     </tbody>
                 </table>
             </div>
         </div>
-    </section>
+    </div>
 </div>
