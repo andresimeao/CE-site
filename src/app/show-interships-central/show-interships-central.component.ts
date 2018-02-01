@@ -12,9 +12,10 @@ import { MessagingService } from '../services/messaging.service';
 })
 export class ShowIntershipsCentralComponent implements OnInit {
   menssage:any;
+  token:any;
   constructor(public intershipService: IntershipService,public messaging:MessagingService) {
           this.messaging.getPermission();
-          this.messaging.receiveMessage();
+          this.token = this.messaging.receiveMessage();
           this.menssage = this.messaging.currentMessage;
    }
   //interships:Observable<AngularFireAction<DatabaseSnapshot>[]>;
@@ -24,6 +25,9 @@ export class ShowIntershipsCentralComponent implements OnInit {
   teste:Observable<any>;
   nameCompany:any;
   array:any;
+  send(){
+    this.messaging.sendMessage();
+  }
   ngOnInit() {
 
     this.interships = this.intershipService.afDB.list('/interships', ref => ref.orderByChild('status').equalTo(0)).snapshotChanges()
