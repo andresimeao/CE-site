@@ -26,13 +26,13 @@
 
     <div class="container-fluid">
 
-        <div class="row">
+        <div [ngClass]="{'row': showMenu}">
 
             <nav *ngIf="showMenu" class="bg-white sidebar sidebar-offcanvas" id="sidebar">
                 <div class="user-info">
-                    <!-- <img src="images/face.jpg" alt=""> -->
-                    <p class="name">Richard V.Welsh</p>
-                    <p class="designation">Manager</p>
+                    <p class="name">{{user?.name}}</p>
+                    <p class="designation" *ngIf="user?.status == 1">Funcionário Central de Estágios</p>
+                    <p class="designation" *ngIf="user?.status == 2">{{user?.company}}</p>
                     <span class="online"></span>
                 </div>
                 <ul class="nav">
@@ -44,7 +44,7 @@
                     </li>
                 </ul>
             </nav>
-            <div class="content-wrapper">
+            <div [ngClass]="{'content-wrapper': showMenu}">
                 <br>
                 <br>
                 <br>
