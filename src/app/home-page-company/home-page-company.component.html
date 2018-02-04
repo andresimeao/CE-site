@@ -25,9 +25,10 @@
                                 <label class="badge badge-warning" *ngIf="item.payload.val().status == 2">Rejeitada</label>
                             </td>
                             <td>
-                                <a href="#" *ngIf="item.payload.val().status == 1" class="btn btn-outline-primary btn-sm" style="width:81px">Ver vaga</a>
-                                <a href="#" *ngIf="item.payload.val().status == 2" class="btn btn-outline-primary btn-sm" style="width:81px">Editar vaga</a>
-                                <a href="#" *ngIf="item.payload.val().status == 0" class="btn btn-outline-primary btn-sm" style="width:81px">Editar vaga</a>
+                                <!-- <a routerLink="/show-intership-central/{{item.key}}" class="btn btn-outline-primary btn-sm">Gerenciar</a> -->
+                                <a routerLink="" *ngIf="item.payload.val().status == 1" class="btn btn-outline-primary btn-sm" style="width:81px">Ver vaga</a>
+                                <a routerLink="/edit-internship-company/{{item.key}}" *ngIf="item.payload.val().status == 2" class="btn btn-outline-primary btn-sm" style="width:81px">Editar vaga</a>
+                                <a routerLink="/edit-internship-company/{{item.key}}" *ngIf="item.payload.val().status == 0" class="btn btn-outline-primary btn-sm" style="width:81px">Editar vaga</a>
                             </td>
                         </tr>
                     </tbody>
