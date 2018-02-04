@@ -21,8 +21,10 @@ import { CreateInternshipComponent } from './create-internship/create-internship
 import { HomePageCentralComponent } from './home-page-central/home-page-central.component';
 import { ShowIntershipsCentralComponent } from './show-interships-central/show-interships-central.component';
 import { IntershipDetailComponent } from './intership-detail/intership-detail.component';
+import { EditInternshipCompanyComponent } from './edit-internship-company/edit-internship-company.component';
 //router
 import {routing} from './app.routing';
+
 
 
 
@@ -40,6 +42,7 @@ import {routing} from './app.routing';
     CreateInternshipComponent,
     ShowIntershipsCentralComponent,
     IntershipDetailComponent,
+    EditInternshipCompanyComponent,
     ],
   imports: [
     BrowserModule,
