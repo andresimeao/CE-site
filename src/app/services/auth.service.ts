@@ -5,7 +5,6 @@ import { Observable } from 'rxjs/Observable';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { AngularFireDatabase, AngularFireObject } from 'angularfire2/database';
 import * as firebase from 'firebase/app';
-
 import { LoginComponent } from '.././login/login.component';
 import { error } from 'util';
 // import { EventEmitter } from 'selenium-webdriver';
@@ -22,6 +21,7 @@ export class AuthService {
   private authenticatedUser: boolean = false;
 
   showMenu = new EventEmitter<boolean>();
+  userMenu = new EventEmitter<any>();
 
   constructor(public afAuth: AngularFireAuth, public afDB: AngularFireDatabase, public router: Router) { }
 
@@ -48,17 +48,20 @@ export class AuthService {
 
           this.user = this.afDB.object('/users/' + response.uid).valueChanges()
 
+
+
           this.user.forEach(element => {
             this.status = element.status;
 
+            this.userMenu.emit(element);
+
             switch (this.status) {
               case 1:
-
-                alert('Usuario logado com sucesso: ' + response.uid);
+                // alert('Usuario logado com sucesso: ' + response.uid);
                 this.router.navigate(['/show-interships-central']);
                 break;
               case 2:
-                alert('Usuario logado com sucesso: ' + response.uid);
+                // alert('Usuario logado com sucesso: ' + response.uid);
                 this.router.navigate(['/home-page-company']);
                 break;
               default:

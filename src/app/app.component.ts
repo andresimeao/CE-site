@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
+import { NgClass } from '@angular/common';
 
 
 @Component({
@@ -10,7 +11,7 @@ import { AuthService } from './services/auth.service';
 
 export class AppComponent {
 
-  
+  user: any;
   showMenu: boolean = false;
 
   constructor(private authService: AuthService) { 
@@ -18,8 +19,14 @@ export class AppComponent {
   }
 
   ngOnInit(){
+    
     this.authService.showMenu.subscribe(
       showM => this.showMenu = showM
     );
+    
+    this.authService.userMenu.subscribe(
+      userM => this.user = userM
+    );
+
   }
 }

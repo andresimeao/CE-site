@@ -28,9 +28,9 @@ export class ShowIntershipsCentralComponent implements OnInit {
   ngOnInit() {
 
     this.interships = this.intershipService.afDB.list('/interships', ref => ref.orderByChild('status').equalTo(0)).snapshotChanges()
-    console.log(this.interships)
+    // console.log(this.interships)
     this.interships.forEach(array => {
-      console.log('Array: ',array);
+      // console.log('Array: ',array);
       this.array = array;
     });
   }
