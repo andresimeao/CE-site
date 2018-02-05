@@ -28,8 +28,5 @@ export class AppComponent {
       userM => this.user = userM
     );
 
-    console.log(this.user);
-    
-    
   }
 }
