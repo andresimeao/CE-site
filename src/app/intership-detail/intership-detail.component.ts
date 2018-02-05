@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 import { Route } from '@angular/router/src/config';
+import { MessagingService } from '../services/messaging.service';
 
 import { Router } from '@angular/router';
 
@@ -17,7 +18,7 @@ import { Router } from '@angular/router';
 export class IntershipDetailComponent implements OnInit {
 
   constructor(private route: ActivatedRoute, private authservice:AuthService,
-    private formbuilder: FormBuilder, public router:Router) {}
+    private formbuilder: FormBuilder, public router:Router, public message:MessagingService) {}
 cancellationReason:any;
 observation:any;
 id:any;
@@ -71,6 +72,15 @@ optionSemester:any[] = [{name:'ADS',velue:'ADS'},{name:'INFO',velue:'INFO'},{nam
       status: 1
 
   }).then(resp =>{
+      if (this.program == "Análise e Desenvolvimento de Sistemas") {
+        this.message.sendMessageAds();
+      }
+      if(this.program == "Informática para negócios"){
+        this.message.sendMessageInfo()
+      }
+      if (this.program == "Agronegócio") {
+        this.message.sendMessageAgro();
+      }
       alert('Liberado com sucesso !');
       rot.router.navigate(['/show-interships-central']);
     }).catch(error =>{

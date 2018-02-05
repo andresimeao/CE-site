@@ -25,9 +25,6 @@ export class ShowIntershipsCentralComponent implements OnInit {
   teste:Observable<any>;
   nameCompany:any;
   array:any;
-  send(){
-    this.messaging.sendMessage();
-  }
   ngOnInit() {
 
     this.interships = this.intershipService.afDB.list('/interships', ref => ref.orderByChild('status').equalTo(0)).snapshotChanges()
