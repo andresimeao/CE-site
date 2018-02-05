@@ -91,14 +91,17 @@
 
             <div class="form-group">
                 <label for="">Agendamento por telefone</label>
-                <label class="form-check-label mr-2">
-                    <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="'true'" id="" name="schedule"class="form-check-input">
-                    Sim
-                </label>
-                <label class="form-check-label mr-2">
-                    <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="'false'" id="" name="schedule" class="form-check-input">
-                    Não
-                </label>
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                        <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="'true'" id="" name="schedule"class="form-check-input" disabled>
+                        Sim
+                    </label>
+                    <label class="form-check-label mr-2">
+                        <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="'false'" id="" name="schedule" class="form-check-input" disabled>
+                        Não
+                    </label>
+                </div>
+
                 <div class="ml-4" *ngIf="intership?.payload.val().schedule == 'true' || sim == 'true'">
                     <label class="mt-2" for="">Falar com:</label>
                     <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" #whoTalkSchedule="ngModel" name="whoTalkSchedule" class="form-control" required>
