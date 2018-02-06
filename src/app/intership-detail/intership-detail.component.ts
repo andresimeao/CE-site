@@ -35,13 +35,10 @@ export class IntershipDetailComponent implements OnInit {
     let intership = this.authservice.afDB.object('/interships/' + this.id).snapshotChanges()
     intership.forEach(element => {
       this.intership = element
-      console.log('elemente: ', element);
-      console.log('intership: ', this.intership);
     })
 
   }
   save(form) {
-    console.log('formulario: ', form.value)
     let teste = 'programador web'
     this.authservice.afDB.object('/interships/' + this.id).update({
       internshipVacancy: form.value.internshipVacancy,
@@ -49,9 +46,35 @@ export class IntershipDetailComponent implements OnInit {
       personalProfile: form.value.personalProfile,
       preference: form.value.preference,
       technicalKnowledge: form.value.technicalKnowledge,
-      valueOfRemuneration: form.value.valueOfRemuneration
     }).then(resp => {
+
+      if(this.intership.payload.val().remuneration){
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          valueOfRemuneration: form.value.valueOfRemuneration
+        }).then(resp => {
+          console.log("Remuneração salva");
+        });
+      }
+      if (this.intership.payload.val().schedule) {
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          email: form.value.email,
+          whoCaringForEmail: form.value.whoCaringForEmail,
+          whoTalkSchedule: form.value.whoTalkSchedule,
+          phone: form.value.phone
+        }).then(response => {
+          console.log("Agenda salva");
+        });
+      }
+      if (this.intership.payload.val().benefit) {
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          othersBenefit: form.value.othersBenefit
+        }).then(response => {
+          console.log("Beneficio salvo");
+        });
+      }
+    
       alert('salvo com sucesso!');
+
     }).catch(error => {
       alert('Erro: ' + error);
     })
