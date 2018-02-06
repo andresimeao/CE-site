@@ -11,10 +11,11 @@ export class IntershipService {
   //interships:AngularFireList<any>;
   items:any;
   teste:any[];
+
   constructor(public afDB: AngularFireDatabase, private router: Router) { }
 
   createIntership(i, statusUser){
-    console.log(i);
+
     this.afDB.database.ref('/interships/').push({
       internshipVacancy:i.internshipVacancy,
       periodMorning:i.periodMorning,
@@ -41,7 +42,8 @@ export class IntershipService {
       status:0,
       program:false,
       semester:false,
-      cancellationReason:false
+      cancellationReason:false,
+      date: Date.now()
 
     }).then((resp) =>{
 
