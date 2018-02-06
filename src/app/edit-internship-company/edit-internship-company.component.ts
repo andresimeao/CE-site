@@ -3,12 +3,14 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Route } from '@angular/router/src/config';
 import { Router } from '@angular/router';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms'
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
+import swal from 'sweetalert'
 
 @Component({
   selector: 'app-edit-internship-company',
   templateUrl: './edit-internship-company.component.html',
-  styleUrls: ['./edit-internship-company.component.css']
+  styleUrls: ['./edit-internship-company.component.css'],
 })
 export class EditInternshipCompanyComponent implements OnInit {
 
@@ -62,10 +64,18 @@ export class EditInternshipCompanyComponent implements OnInit {
         });
       }
 
-      alert('Salvo com sucesso!');
+      swal({
+        icon: 'success',
+        title: 'Atualizado',
+        text: 'O estágio foi atualizado!',
+      })
 
     }).catch(error => {
-      alert('Erro: ' + error);
+      swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Erro ao atualizar vaga de estágio!',
+      })
     })
 
   }
