@@ -1,3 +1,148 @@
-<p>
-  edit-internship-company works!
-</p>
+<div class="card">
+    <div class="card-body">
+
+        <h5 class="card-title mb-4">Editar da vaga de estágio</h5>
+
+        <form #f="ngForm" class="form-sample">
+            <div class="form-group">
+                <label for="internshipVacancy">Vaga</label>
+                <input type="text" [(ngModel)]="intership?.payload.val().internshipVacancy" #internshipVacancy="ngModel" name="internshipVacancy" class="form-control" required>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="internshipVacancy.invalid && (internshipVacancy.dirty || internshipVacancy.touched)" role="alert">
+                Campo Obrigatório!
+            </div>
+
+            <div class="form-group">
+                <label for="internshipVacancy">Periodo</label>
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                        <input [(ngModel)]="intership?.payload.val().periodMorning" value="Manhã" type="checkbox" name="periodMorning" class="form-check-input">
+                        Manhã
+                    </label>
+                    <label class="form-check-label mr-2">
+                        <input [(ngModel)]="intership?.payload.val().periodAfternoon" value="Tarde" type="checkbox" name="periodAfternoon" class="form-check-input">
+                        Tarde
+                    </label>
+                    <label class="form-check-label mr-2">
+                        <input [(ngModel)]="intership?.payload.val().periodNight" value="Noite" type="checkbox" name="periodNight"  class="form-check-input">
+                        Noite
+                    </label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="internshipVacancy">Remuneração</label>
+
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                        <input type="radio" (click)="updateRemunerationTrue()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel"  value="true" name="remuneration" class="form-check-input">
+                        Sim
+                    </label>
+                    <label class="form-check-label mr-2 active">
+                        <input type="radio" (click)="updateRemunerationFalse()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel" value="false" name="remuneration" class="form-check-input">
+                        Não
+                    </label>
+                </div>
+
+                <div *ngIf="intership?.payload.val().remuneration === 'true'">
+                    <input class="form-control" type="text" [(ngModel)]="intership?.payload.val().valueOfRemuneration" #valueOfRemuneration="ngModel" name="valueOfRemuneration" class="form-control" required>
+                    <div class="alert alert-danger mt-3" *ngIf="valueOfRemuneration.invalid && (valueOfRemuneration.dirty || valueOfRemuneration.touched)">Valor obrigatório</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="benefit">Benefícios</label>
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                        <input type="checkbox" name="benefitTransport" [(ngModel)]="intership?.payload.val().benefitTransport"  value="true" id="" class="form-check-input">
+                        Vale-transporte
+                    </label>
+                    <label class="form-check-label mr-2">
+                        <input type="checkbox" name="benefitMeal" [(ngModel)]="intership?.payload.val().benefitMeal" value="true" id="" class="form-check-input">        
+                        Refeição
+                    </label>
+                    <label class="form-check-label mr-2">
+                        <input type="checkbox" name="benefit" (click)="updateBenefit()"  [(ngModel)]="intership?.payload.val().benefit" [value]="true" id="" class="form-check-input">        
+                        Outros:     
+                    </label>
+                </div>
+                <div class="form-group ml-4" *ngIf="intership?.payload.val().benefit == true">
+                    <input type="text" name="othersBenefit" [(ngModel)]="intership?.payload.val().othersBenefit" #othersBenefit="ngModel" value="true" required id="othersBenefit" class="form-control">
+                    <div class="alert alert-danger mt-3" *ngIf="othersBenefit.invalid && (othersBenefit.dirty || othersBenefit.touched)">Valor obrigatório</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="technicalKnowledge">Conhecimentos técnicos requeridos</label>
+                <input type="text" [(ngModel)]="intership?.payload.val().technicalKnowledge" #technicalKnowledge="ngModel" name="technicalKnowledge" placeholder="Detalhar" class="form-control" required>
+            </div>
+            <div class="alert alert-danger" *ngIf="technicalKnowledge.invalid && (technicalKnowledge.dirty || technicalKnowledge.touched)">
+                Campo obrigatório!
+            </div>
+
+            <div class="form-group">
+                <label for="personalProfile">Perfil pessoal requerido</label>
+                <input type="text" name="personalProfile" [(ngModel)]="intership?.payload.val().personalProfile" #personalProfile="ngModel" placeholder="Ex: comunicação, lidar com pessoas" class="form-control" required>
+            </div>
+            <div class="alert alert-danger" *ngIf="personalProfile.invalid && (personalProfile.dirty || personalProfile.touched)">
+                Campo obrigatório!
+            </div>
+
+            <div class="form-group">
+                <label for="">Preferência</label>
+                <input type="text" name="preference" [(ngModel)]="intership?.payload.val().preference" #preference="ngModel" placeholder="Ex: idade, sexo" class="form-control" required>
+            </div>
+            <div class="alert alert-danger" *ngIf="preference.invalid && (preference.dirty || preference.touched)">
+                Campo obrigatório!
+            </div>
+
+            <div class="form-group">
+                <label for="">Agendamento por telefone </label>
+                <div class="form-inline">
+                    <label class="form-check-label mr-2">
+                      <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="'true'" id="" name="schedule" class="form-check-input">
+                      Sim
+                  </label>
+                    <label class="form-check-label mr-2">
+                      <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="'false'" id="" name="schedule" class="form-check-input">
+                      Não
+                  </label>
+                </div>
+                <div class="ml-4" *ngIf="intership?.payload.val().schedule == 'true' || sim == 'true'">
+                    <label class="mt-2" for="">Falar com:</label>
+                    <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" #whoTalkSchedule="ngModel" name="whoTalkSchedule" class="form-control" required>
+                    <div class="alert alert-danger mt-3" *ngIf="whoTalkSchedule.invalid && (whoTalkSchedule.dirty || whoTalkSchedule.touched)">
+                        Campo obrigatório!
+                    </div>
+                    <label class="mt-2" for="">Telefone:</label>
+                    <input type="text" [(ngModel)]="intership?.payload.val().phone" #phone="ngModel" name="phone" class="form-control" required>
+                    <div class="alert alert-danger mt-3" *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+                        Campo obrigatório!
+                    </div>
+                    <label class="mt-2" for="">E-mail:</label>
+                    <input type="email" [(ngModel)]="intership?.payload.val().email" #email="ngModel" name="email" class="form-control" required>
+                    <div class="alert alert-danger mt-3" *ngIf="email.invalid && (email.dirty || email.touched)">
+                        Campo obrigatório!
+                    </div>
+                    <label class="mt-2" for="">Aos cuidado de:</label>
+                    <input type="text" [(ngModel)]="intership?.payload.val().whoCaringForEmail" #whoCaringForEmail="ngModel" name="whoCaringForEmail" class="form-control" required>
+                    <div class="alert alert-danger mt-3" *ngIf="whoCaringForEmail.invalid && (whoCaringForEmail.dirty || whoCaringForEmail.touched)">
+                        Campo obrigatório!
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <label for="">Observações</label>
+                <textarea name="observations" [(ngModel)]="intership?.payload.val().observations" class="form-control"></textarea>
+            </div>
+
+            <button (click)="save(f)" type="submit" [disabled]="!f.valid" class="btn btn-primary">Salvar</button>
+
+        </form>
+
+    </div>
+
+</div>
