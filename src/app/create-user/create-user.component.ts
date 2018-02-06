@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from '.././services/auth.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import {FormGroup, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-create-user',
@@ -21,32 +20,32 @@ export class CreateUserComponent implements OnInit {
   ngOnInit() {
 
     this.addUserForm = this.formbuilder.group({
-      company:[null, Validators.required],
-      name:[null, Validators.required],
-      email:[null, [Validators.required, Validators.email]],
-      password:[null, [Validators.required, Validators.minLength(6)]],
-      password2:[null, [Validators.required, Validators.minLength(6)]]
+      company: [null, Validators.required],
+      name: [null, Validators.required],
+      email: [null, [Validators.required, Validators.email]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
+      password2: [null, [Validators.required, Validators.minLength(6)]]
     });
 
   }
 
-  createUser(){
-   this.AuthService.createEmailAndPassword(this.addUserForm.value)
-   this.addUserForm.reset();
-    
+  createUser() {
+    this.AuthService.createEmailAndPassword(this.addUserForm.value)
+    this.addUserForm.reset();
+
 
   }
 
-  checkFieldValidAndTouched(field){
+  checkFieldValidAndTouched(field) {
     return !this.addUserForm.get(field).errors && this.addUserForm.get(field).touched;
   }
 
-  toApplyCssErro(field){
-    return{ 
-      
+  toApplyCssErro(field) {
+    return {
+
       'has-error': this.checkFieldValidAndTouched(field),
       'has-feedback': this.checkFieldValidAndTouched(field)
-      
+
     }
   }
 }
