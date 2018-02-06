@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
-
 import { AuthService } from '../services/auth.service';
 import { IntershipService } from '../services/intership.service';
-
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-create-internship',
@@ -28,8 +26,8 @@ export class CreateInternshipComponent implements OnInit {
   remuneration:false,
   valueOfRemuneration:null,
   benefit:false,
-  benefitTransport:null,
-  benefitMeal:null,
+  benefitTransport:false,
+  benefitMeal:false,
   othersBenefit:null,
   technicalKnowledge:null,
   personalProfile:null,
@@ -53,9 +51,19 @@ export class CreateInternshipComponent implements OnInit {
   createIntership():void{
     this.internship.userId = this.id;
      if(this.internship.periodMorning === false && this.internship.periodAfternoon === false && this.internship.periodNight === false){
-       alert('Por favor insira um periodo !');
-     }else if (this.internship.benefitTransport === null && this.internship.benefitMeal === null && this.internship.benefit === null) {
-         alert('Por favor insira um beneficio !');
+
+      swal({
+        icon: 'error',
+        text: 'Por favor insira um período!',
+      })
+       //alert('Por favor insira um periodo !');
+     }else if (this.internship.benefitTransport == false && this.internship.benefitMeal == false && this.internship.benefit == false) {
+        swal({
+          icon: 'error',
+          text: 'Por favor insira um benefício!',
+        })
+
+         //alert('Por favor insira um beneficio !');
        }else{
          this.intershipService.createIntership(this.internship);
         //  this.internship.reset();
