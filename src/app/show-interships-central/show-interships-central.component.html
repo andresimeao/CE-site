@@ -20,7 +20,7 @@
 
                         <tr *ngFor="let item of array">
                             <td>{{item.payload.val().internshipVacancy}}</td>
-                            <td>Nome empresa</td>
+                            <td>{{item.payload.val().stringNameOfCompany}}</td>
                             <td>12 May 2017</td>
                             <td><label class="badge badge-warning">Pendente</label></td>
                             <td><a routerLink="/show-intership-central/{{item.key}}" class="btn btn-outline-primary btn-sm">Gerenciar</a></td>
