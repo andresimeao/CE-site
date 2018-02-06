@@ -20,7 +20,7 @@ import swal from 'sweetalert';
 export class IntershipDetailComponent implements OnInit {
 
 
-  constructor(private route: ActivatedRoute, private authservice: AuthService, private formbuilder: FormBuilder, public router: Router, public message:MessagingService) {
+  constructor(private route: ActivatedRoute, private authservice: AuthService, private formbuilder: FormBuilder, public router: Router, public message: MessagingService) {
 
   }
   cancellationReason: any;
@@ -50,7 +50,7 @@ export class IntershipDetailComponent implements OnInit {
       technicalKnowledge: form.value.technicalKnowledge,
     }).then(resp => {
 
-      if(this.intership.payload.val().remuneration){
+      if (this.intership.payload.val().remuneration) {
         this.authservice.afDB.object('/interships/' + this.id).update({
           valueOfRemuneration: form.value.valueOfRemuneration
         }).then(resp => {
@@ -74,7 +74,7 @@ export class IntershipDetailComponent implements OnInit {
           console.log("Beneficio salvo");
         });
       }
-    
+
       swal({
         icon: 'success',
         title: 'Atualizado',
@@ -110,17 +110,17 @@ export class IntershipDetailComponent implements OnInit {
       cancellationReason: false,
       status: 1
 
-  }).then(resp =>{
+    }).then(resp => {
       if (this.program == "Análise e Desenvolvimento de Sistemas") {
         this.message.sendMessageAds();
       }
-      if(this.program == "Informática para negócios"){
+      if (this.program == "Informática para negócios") {
         this.message.sendMessageInfo()
       }
       if (this.program == "Agronegócio") {
         this.message.sendMessageAgro();
       }
-      
+
       swal({
         icon: 'success',
         title: 'Aprovado!',
@@ -142,36 +142,53 @@ export class IntershipDetailComponent implements OnInit {
 
   }
 
-
-  disapproved(obs): void {
-
-    console.log(obs);
-    let rot = this;
-    this.authservice.afDB.object('/interships/' + this.id).update({
-      status: 2,
-      cancellationReason: obs
-
-    }).then(resp => {
-      swal({
-        icon: 'success',
-        title: 'Rejeitado!',
-        text: 'Não foi possível rejeitar a vaga de estágio !',
-      })
-      //alert('Cancelado com sucesso !');
-      rot.router.navigate(['/show-interships-central']);
-    }).catch(error => {
-
-      swal({
-        icon: 'error',
-        title: 'Erro!',
-        text: 'Não foi possível rejeitar a vaga de estágio !',
-      })
-
-      //alert('Erro: ' + error);
-    })
-  }
-
-  showObservation(): void {
+  disapproved(): void {
     this.observation = true;
+
+    swal({
+      text: "Qual o motivo da rejeição da vaga de estágio?",
+      buttons: {
+        cancel: true,
+        confirm: true,
+      },
+      content: {
+        element: "input",
+        attributes: {
+          type: "text",
+        },
+      }
+    }).then(value => {
+
+      if (value !== null && value !== "") {
+        console.log(value);
+
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          status: 2,
+          cancellationReason: value
+
+        }).then(resp => {
+
+          swal({
+            icon: 'success',
+            title: 'Rejeitado!',
+            text: 'A vaga de estágio foi rejeitada com sucesso!',
+          });
+
+          this.router.navigate(['/show-interships-central']);
+
+        }).catch(error => {
+
+          swal({
+            icon: 'error',
+            title: 'Erro!',
+            text: 'Não foi possível rejeitar a vaga de estágio !',
+          });
+
+        });
+
+      }
+
+    });
   }
+
 }
