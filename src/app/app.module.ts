@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 
+
 //services
 import { AuthService } from './services/auth.service';
 import { IntershipService } from './services/intership.service';
@@ -13,6 +14,8 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import {AngularFirestoreModule} from 'angularfire2/firestore';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
+import { HttpModule } from '@angular/http';
+
 //componets
 import { CreateUserComponent } from './create-user/create-user.component';
 import { LoginComponent } from './login/login.component';
@@ -52,7 +55,9 @@ import {routing} from './app.routing';
     AngularFirestoreModule,
     routing,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    HttpModule
+    
 
   ],
   providers: [AuthService, IntershipService, MessagingService],

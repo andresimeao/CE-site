@@ -12,9 +12,10 @@ import { MessagingService } from '../services/messaging.service';
 })
 export class ShowIntershipsCentralComponent implements OnInit {
   menssage:any;
+  token:any;
   constructor(public intershipService: IntershipService,public messaging:MessagingService) {
           this.messaging.getPermission();
-          this.messaging.receiveMessage();
+          this.token = this.messaging.receiveMessage();
           this.menssage = this.messaging.currentMessage;
    }
   //interships:Observable<AngularFireAction<DatabaseSnapshot>[]>;

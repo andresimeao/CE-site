@@ -4,6 +4,7 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms'
 import { Route } from '@angular/router/src/config';
+import { MessagingService } from '../services/messaging.service';
 
 import { Router } from '@angular/router';
 
@@ -16,7 +17,8 @@ import { Router } from '@angular/router';
 })
 export class IntershipDetailComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private authservice: AuthService, private formbuilder: FormBuilder, public router: Router) {
+
+  constructor(private route: ActivatedRoute, private authservice: AuthService, private formbuilder: FormBuilder, public router: Router, public message:MessagingService) {
 
   }
   cancellationReason: any;
@@ -26,6 +28,7 @@ export class IntershipDetailComponent implements OnInit {
   program: any = null;
   intership: any;
   optionSemester: any[] = [{ name: 'ADS', velue: 'ADS' }, { name: 'INFO', velue: 'INFO' }, { name: 'AGRO', velue: 'AGRO' }]
+
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
@@ -71,7 +74,17 @@ export class IntershipDetailComponent implements OnInit {
       cancellationReason: false,
       status: 1
 
-    }).then(resp => {
+  }).then(resp =>{
+      if (this.program == "Análise e Desenvolvimento de Sistemas") {
+        this.message.sendMessageAds();
+      }
+      if(this.program == "Informática para negócios"){
+        this.message.sendMessageInfo()
+      }
+      if (this.program == "Agronegócio") {
+        this.message.sendMessageAgro();
+      }
+
       alert('Liberado com sucesso !');
       rot.router.navigate(['/show-interships-central']);
     }).catch(error => {
