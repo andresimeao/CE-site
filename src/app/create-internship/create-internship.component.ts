@@ -34,7 +34,7 @@ export class CreateInternshipComponent implements OnInit {
   technicalKnowledge:null,
   personalProfile:null,
   preference:null,
-  schedule:false,
+  schedule:true,
   whoTalkSchedule:null,
   phone:null,
   email:null,
