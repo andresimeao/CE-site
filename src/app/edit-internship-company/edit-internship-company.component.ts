@@ -5,7 +5,7 @@ import { Route } from '@angular/router/src/config';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
-import swal from 'sweetalert'
+import swal from 'sweetalert';
 
 @Component({
   selector: 'app-edit-internship-company',
@@ -32,11 +32,13 @@ export class EditInternshipCompanyComponent implements OnInit {
 
     this.authservice.afDB.object('/interships/' + this.id).update({
       internshipVacancy: form.value.internshipVacancy,
-      observations: form.value.observations,
+      observations: form.value.observations || null,
       personalProfile: form.value.personalProfile,
       preference: form.value.preference,
       technicalKnowledge: form.value.technicalKnowledge,
       status: 0,
+      benefitMeal:form.value.benefitMeal,
+      benefitTransport:form.value.benefitTransport
 
     }).then(resp => {
       if(form.value.schedule.remuneration){
