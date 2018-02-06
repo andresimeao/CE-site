@@ -36,16 +36,16 @@
 
                 <div class="form-inline">
                     <label class="form-check-label mr-2">
-                        <input type="radio" (click)="updateRemunerationTrue()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel"  value="true" name="remuneration" class="form-check-input">
+                        <input type="radio" (click)="updateRemunerationTrue()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel"  [value]="true" name="remuneration" class="form-check-input">
                         Sim
                     </label>
                     <label class="form-check-label mr-2 active">
-                        <input type="radio" (click)="updateRemunerationFalse()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel" value="false" name="remuneration" class="form-check-input">
+                        <input type="radio" (click)="updateRemunerationFalse()" [(ngModel)]="intership?.payload.val().remuneration" #remuneration="ngModel" [value]="false" name="remuneration" class="form-check-input">
                         Não
                     </label>
                 </div>
 
-                <div *ngIf="intership?.payload.val().remuneration === 'true'">
+                <div *ngIf="intership?.payload.val().remuneration == true">
                     <input class="form-control" type="text" [(ngModel)]="intership?.payload.val().valueOfRemuneration" #valueOfRemuneration="ngModel" name="valueOfRemuneration" class="form-control" required>
                     <div class="alert alert-danger mt-3" *ngIf="valueOfRemuneration.invalid && (valueOfRemuneration.dirty || valueOfRemuneration.touched)">Valor obrigatório</div>
                 </div>
@@ -101,15 +101,15 @@
                 <label for="">Agendamento por telefone </label>
                 <div class="form-inline">
                     <label class="form-check-label mr-2">
-                      <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="'true'" id="" name="schedule" class="form-check-input">
+                      <input type="radio" (click)="updateScheduleTrue()" [(ngModel)]="intership?.payload.val().schedule" [value]="true" id="" name="schedule" class="form-check-input">
                       Sim
                   </label>
                     <label class="form-check-label mr-2">
-                      <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="'false'" id="" name="schedule" class="form-check-input">
+                      <input type="radio" (click)="updateScheduleFalse()" [(ngModel)]="intership?.payload.val().schedule" [value]="false" id="" name="schedule" class="form-check-input">
                       Não
                   </label>
                 </div>
-                <div class="ml-4" *ngIf="intership?.payload.val().schedule == 'true' || sim == 'true'">
+                <div class="ml-4" *ngIf="intership?.payload.val().schedule == true">
                     <label class="mt-2" for="">Falar com:</label>
                     <input type="text" [(ngModel)]="intership?.payload.val().whoTalkSchedule" #whoTalkSchedule="ngModel" name="whoTalkSchedule" class="form-control" required>
                     <div class="alert alert-danger mt-3" *ngIf="whoTalkSchedule.invalid && (whoTalkSchedule.dirty || whoTalkSchedule.touched)">

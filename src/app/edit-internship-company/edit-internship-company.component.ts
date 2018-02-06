@@ -61,16 +61,16 @@ export class EditInternshipCompanyComponent implements OnInit {
 
   }
   updateScheduleTrue() {
-    this.authservice.afDB.object('/interships/' + this.id).update({ schedule: 'true' });
+    this.authservice.afDB.object('/interships/' + this.id).update({ schedule: true });
   }
   updateScheduleFalse() {
-    this.authservice.afDB.object('/interships/' + this.id).update({ schedule: 'false' });
+    this.authservice.afDB.object('/interships/' + this.id).update({ schedule: false });
   }
   updateRemunerationTrue() {
-    this.authservice.afDB.object('/interships/' + this.id).update({ remuneration: 'true' });
+    this.authservice.afDB.object('/interships/' + this.id).update({ remuneration: true });
   }
   updateRemunerationFalse() {
-    this.authservice.afDB.object('/interships/' + this.id).update({ remuneration: 'false' });
+    this.authservice.afDB.object('/interships/' + this.id).update({ remuneration: false });
   }
   updateBenefit() {
     this.authservice.afDB.object('/interships/' + this.id).update({ benefit: !this.intership.payload.val().benefit });
