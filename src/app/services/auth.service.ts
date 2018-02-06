@@ -164,4 +164,11 @@ export class AuthService {
 
       });
   }
+
+  logout(){
+    this.afAuth.auth.signOut().then(resp => {
+        this.showMenu.emit(false);
+        this.router.navigate(['/login']);
+    });
+  }
 }
