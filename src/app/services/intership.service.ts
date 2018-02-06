@@ -35,6 +35,7 @@ export class IntershipService {
       email:i.email,
       whoCaringForEmail:i.whoCaringForEmail,
       nameOfCompany:i.nameOfCompany,
+      stringNameOfCompany: i.stringNameOfCompany,
       observations:i.observations,
       userId:i.userId,
       status:0,
