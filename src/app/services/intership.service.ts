@@ -13,7 +13,7 @@ export class IntershipService {
   teste:any[];
   constructor(public afDB: AngularFireDatabase, private router: Router) { }
 
-  createIntership(i){
+  createIntership(i, statusUser){
     console.log(i);
     this.afDB.database.ref('/interships/').push({
       internshipVacancy:i.internshipVacancy,
@@ -52,7 +52,12 @@ export class IntershipService {
       });
 
       //alert('Enviado com sucesso');
-      this.router.navigate(['/home-page-company']);
+      if(statusUser == 1){
+        this.router.navigate(['/show-interships-central']);
+      }else if(statusUser == 2 ){
+        this.router.navigate(['/home-page-company']);
+      }
+      
     },(error) =>{
 
       swal({

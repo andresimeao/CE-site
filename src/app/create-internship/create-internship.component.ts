@@ -79,7 +79,8 @@ export class CreateInternshipComponent implements OnInit {
 
       //alert('Por favor insira um beneficio !');
     } else {
-      this.intershipService.createIntership(this.internship);
+      let statusUser = 2;
+      this.intershipService.createIntership(this.internship, statusUser);
       //  this.internship.reset();
     }
   }
