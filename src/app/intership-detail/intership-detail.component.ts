@@ -8,6 +8,8 @@ import { MessagingService } from '../services/messaging.service';
 
 import { Router } from '@angular/router';
 
+import swal from 'sweetalert';
+
 
 
 @Component({
@@ -73,10 +75,21 @@ export class IntershipDetailComponent implements OnInit {
         });
       }
     
-      alert('salvo com sucesso!');
+      swal({
+        icon: 'success',
+        title: 'Atualizado',
+        text: 'O estágio foi atualizado!',
+      })
 
     }).catch(error => {
-      alert('Erro: ' + error);
+
+      swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Erro ao atualizar vaga de estágio!',
+      })
+
+      //alert('Erro: ' + error);
     })
 
   }
@@ -107,11 +120,24 @@ export class IntershipDetailComponent implements OnInit {
       if (this.program == "Agronegócio") {
         this.message.sendMessageAgro();
       }
+      
+      swal({
+        icon: 'success',
+        title: 'Aprovado!',
+        text: 'A vaga de estágio foi aprovado com sucesso!',
+      })
 
-      alert('Liberado com sucesso !');
+      //alert('Liberado com sucesso !');
       rot.router.navigate(['/show-interships-central']);
     }).catch(error => {
-      alert('Erro: ' + error);
+
+      swal({
+        icon: 'error',
+        title: 'Erro!',
+        text: 'Não foi possível aprovar a vaga de estágio !',
+      })
+
+      //alert('Erro: ' + error);
     })
 
   }
@@ -126,10 +152,22 @@ export class IntershipDetailComponent implements OnInit {
       cancellationReason: obs
 
     }).then(resp => {
-      alert('Cancelado com sucesso !');
+      swal({
+        icon: 'success',
+        title: 'Rejeitado!',
+        text: 'Não foi possível rejeitar a vaga de estágio !',
+      })
+      //alert('Cancelado com sucesso !');
       rot.router.navigate(['/show-interships-central']);
     }).catch(error => {
-      alert('Erro: ' + error);
+
+      swal({
+        icon: 'error',
+        title: 'Erro!',
+        text: 'Não foi possível rejeitar a vaga de estágio !',
+      })
+
+      //alert('Erro: ' + error);
     })
   }
 
