@@ -1,0 +1,107 @@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">{{internship?.payload.val().internshipVacancy}}</h5>
+
+        <div class="form-group">
+            <label for="internshipVacancy">Período</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input [(ngModel)]="internship?.payload.val().periodMorning" value="Manhã" type="checkbox" name="periodMorning" class="form-check-input" disabled>
+                    Manhã
+                </label>
+                <label class="form-check-label mr-2">
+                    <input [(ngModel)]="internship?.payload.val().periodAfternoon" value="Tarde" type="checkbox" name="periodAfternoon" class="form-check-input" disabled>
+                    Tarde
+                </label>
+                <label class="form-check-label mr-2">
+                    <input [(ngModel)]="internship?.payload.val().periodNight" value="Noite" type="checkbox" name="periodNight"  class="form-check-input" disabled>
+                    Noite
+                </label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="internshipVacancy">Remuneração</label>
+            <div *ngIf="internship?.payload.val().remuneration == true">
+                <p class="card-text">• {{internship?.payload.val().valueOfRemuneration}}</p>
+            </div>
+            <div class="" *ngIf="internship?.payload.val().remuneration == false">
+                <p class="card-text">Não haverá remuneração</p>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <label for="benefit">Benefícios</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="benefitTransport" [(ngModel)]="internship?.payload.val().benefitTransport"  value="true" id="" class="form-check-input" disabled>
+                    Vale-transporte
+                </label>
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="benefitMeal" [(ngModel)]="internship?.payload.val().benefitMeal" value="true" id="" class="form-check-input" disabled>        
+                    Refeição
+                </label>
+                <label class="form-check-label mr-2">
+                    <input type="checkbox" name="benefit" [(ngModel)]="internship?.payload.val().benefit" value="true" id="" class="form-check-input" disabled>        
+                    Outros:     
+                </label>
+            </div>
+            <div class="form-group ml-4" *ngIf="internship?.payload.val().benefit == true">
+                <p class="card-text mr-2">• {{internship?.payload.val().othersBenefit}}</p>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="technicalKnowledge">Conhecimentos técnicos requeridos</label>
+            <p class="card-text mr-2">• {{internship?.payload.val().technicalKnowledge}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="personalProfile">Perfil pessoal requerido</label>
+            <p class="card-text mr-2">• {{internship?.payload.val().personalProfile}}</p>
+        </div>
+
+
+        <div class="form-group">
+            <label for="">Preferência</label>
+            <p class="card-text mr-2">• {{internship?.payload.val().preference}}</p>
+        </div>
+
+        <div class="form-group">
+            <label for="">Agendamento por telefone</label>
+            <div class="form-inline">
+                <label class="form-check-label mr-2">
+                    <input type="radio" [(ngModel)]="internship?.payload.val().schedule" [value]="true" id="" name="schedule"class="form-check-input" disabled>
+                    Sim
+                </label>
+                <label class="form-check-label mr-2">
+                    <input type="radio" [(ngModel)]="internship?.payload.val().schedule" [value]="false" id="" name="schedule" class="form-check-input" disabled>
+                    Não
+                </label>
+            </div>
+
+            <div class="ml-4" *ngIf="internship?.payload.val().schedule == true">
+                <label class="mt-2" for="">Falar com:</label>
+                <p class="card-text mr-2">• {{internship?.payload.val().whoTalkSchedule}}</p>
+
+
+                <label class="mt-2" for="">Telefone:</label>
+                <p class="card-text mr-2">• {{internship?.payload.val().phone}}</p>
+
+                <label class="mt-2" for="">E-mail:</label>
+                <p class="card-text mr-2">• {{internship?.payload.val().email}}</p>
+
+                <label class="mt-2" for="">Aos cuidado de:</label>
+                <p class="card-text mr-2">• {{internship?.payload.val().whoCaringForEmail}}</p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="">Observações</label>
+            <p class="card-text mr-2">• {{internship?.payload.val().observations}}</p>
+        </div>
+
+    </div>
+</div>
