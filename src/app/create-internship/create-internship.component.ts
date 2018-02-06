@@ -27,7 +27,7 @@ export class CreateInternshipComponent implements OnInit {
   periodNight:false,
   remuneration:false,
   valueOfRemuneration:null,
-  benefit:null,
+  benefit:false,
   benefitTransport:null,
   benefitMeal:null,
   othersBenefit:null,
@@ -39,7 +39,7 @@ export class CreateInternshipComponent implements OnInit {
   phone:null,
   email:null,
   whoCaringForEmail:null,
-  nameOfCompany:null,
+  nameOfCompany:false,
   observations:null,
   userId:this.id
  }
@@ -58,7 +58,7 @@ export class CreateInternshipComponent implements OnInit {
          alert('Por favor insira um beneficio !');
        }else{
          this.intershipService.createIntership(this.internship);
-         this.internship.reset();
+        //  this.internship.reset();
        }
     }   
   }
