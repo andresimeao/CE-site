@@ -11,6 +11,8 @@ import { error } from 'util';
 import { EventEmitter } from '@angular/core';
 import { Output } from '@angular/core/src/metadata/directives';
 
+import swal from 'sweetalert';
+
 @Injectable()
 export class AuthService {
 
@@ -78,23 +80,49 @@ export class AuthService {
           this.showMenu.emit(false);
 
           switch (error.code) {
-            case 'auth/invalid-email': alert('Endereço de e-mail invalido');
+            case 'auth/invalid-email':
+              swal({
+                text: "Endereço de e-mail inválido",
+                icon: "error",
+              });
+              //alert('Endereço de e-mail invalido');
               break;
 
-            case 'auth/user-disabled': alert('Email desativado');
+            case 'auth/user-disabled':
+              swal({
+                text: "E-mail desativado",
+                icon: "error",
+              });
+              //alert('Email desativado');
               break;
 
-            case 'auth/user-not-found': alert('Conta de usuario não encontrado');
+            case 'auth/user-not-found':
+              swal({
+                text: "Conta de usuário não encontrado",
+                icon: "error",
+              });
+              //alert('Conta de usuario não encontrado');
               break;
 
-            case 'auth/wrong-password': alert('endereço de email ou senha invalidos');
+            case 'auth/wrong-password':
+              swal({
+                text: "Endereço de e-mail ou senha inválidos",
+                icon: "error",
+              });
+
+              //alert('endereço de email ou senha invalidos');
               break;
           }
 
         });
 
     }).catch(error => {
-      alert('Erro de sessão: ' + error);
+      swal({
+        title: "Erro!",
+        text: "Erro de sessão: " + error,
+        icon: "error",
+      });
+      //alert('Erro de sessão: ' + error);
     });
 
     // }).catch(erro =>{
@@ -118,11 +146,21 @@ export class AuthService {
 
         this.afDB.database.ref('users/' + firebaseUser.uid).set({ company: user.company, name: user.name, email: user.email, status: 2 });
 
-        alert('sucesso, id do usuario: ' + firebaseUser.uid);
+        swal({
+          title: "Criado!",
+          text: "Conta criada com sucesso!",
+          icon: "success",
+        });
+
+        //alert('sucesso, id do usuario: ' + firebaseUser.uid);
         this.router.navigate(['/login']);
       }).catch(erro => {
-
-        alert('error: ' + erro.message);
+        swal({
+          title: "Erro!",
+          text: "Não foi possível criar a conta de usuário!",
+          icon: "error",
+        });
+        //alert('error: ' + erro.message);
 
       });
   }

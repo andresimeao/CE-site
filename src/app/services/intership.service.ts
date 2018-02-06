@@ -4,6 +4,8 @@ import { AngularFireDatabase, AngularFireList } from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
+import swal from 'sweetalert';
+
 @Injectable()
 export class IntershipService {
   //interships:AngularFireList<any>;
@@ -41,10 +43,24 @@ export class IntershipService {
       cancellationReason:false
 
     }).then((resp) =>{
-      alert('Enviado com sucesso');
+
+      swal({
+        title: "Criado!",
+        text: "A vaga de estágio foi criada com sucesso!",
+        icon: "success",
+      });
+
+      //alert('Enviado com sucesso');
       this.router.navigate(['/home-page-company']);
     },(error) =>{
-      alert(error);
+
+      swal({
+        title: "Erro!",
+        text: "Não foi possível criar a vaga de estágio!",
+        icon: "error",
+      });
+
+      //alert(error);
     })
   }
   
