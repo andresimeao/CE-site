@@ -26,17 +26,10 @@ import { ShowIntershipsCentralComponent } from './show-interships-central/show-i
 import { IntershipDetailComponent } from './intership-detail/intership-detail.component';
 import { EditInternshipCompanyComponent } from './edit-internship-company/edit-internship-company.component';
 import { ShowInternshipCompanyComponent } from './show-internship-company/show-internship-company.component';
+import { CreateInternshipCentralComponent } from './create-internship-central/create-internship-central.component';
 
 //router
 import {routing} from './app.routing';
-
-
-
-
-
-
-
-
 
 @NgModule({
   declarations: [
@@ -50,6 +43,7 @@ import {routing} from './app.routing';
     IntershipDetailComponent,
     EditInternshipCompanyComponent,
     ShowInternshipCompanyComponent,
+    CreateInternshipCentralComponent,
     ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { ShowIntershipsCentralComponent } from './show-interships-central/show-i
 import { IntershipDetailComponent } from './intership-detail/intership-detail.component';
 import { EditInternshipCompanyComponent } from './edit-internship-company/edit-internship-company.component';
 import { ShowInternshipCompanyComponent } from './show-internship-company/show-internship-company.component';
+import { CreateInternshipCentralComponent } from './create-internship-central/create-internship-central.component';
 
 const APP_ROUTES: Routes =[
 
@@ -23,6 +24,7 @@ const APP_ROUTES: Routes =[
 {path:'show-intership-central/:id', component:IntershipDetailComponent},
 {path:'edit-internship-company/:id', component:EditInternshipCompanyComponent},
 {path:'show-internship-company/:id', component:ShowInternshipCompanyComponent},
+{path:'create-internship-central', component:CreateInternshipCentralComponent},
 
 
 ];
