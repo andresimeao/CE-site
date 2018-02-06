@@ -59,20 +59,20 @@
                 <label for="benefit">Quais são os benefícios?</label>
                 <div class="form-inline">
                     <label class="form-check-label mr-2">
-                    <input type="checkbox" name="benefitTransport" [(ngModel)]="internship.benefitTransport" value="true" id="" class="form-check-input">
-                    Vale-transporte
-                </label>
+                        <input type="checkbox" name="benefitTransport" [(ngModel)]="internship.benefitTransport" value="true" id="" class="form-check-input">
+                        Vale-transporte
+                    </label>
                     <label class="form-check-label mr-2">
-                    <input type="checkbox" name="benefitMeal" [(ngModel)]="internship.benefitMeal" value="true" id="" class="form-check-input">        
-                    Refeição
-                </label>
+                        <input type="checkbox" name="benefitMeal" [(ngModel)]="internship.benefitMeal" value="true" id="" class="form-check-input">        
+                        Refeição
+                    </label>
                     <label class="form-check-label mr-2">
-                    <input type="radio" name="benefit" [(ngModel)]="internship.benefit" #benefit="ngModel" value="true" id="" class="form-check-input">  
-                    Outros      
-                </label>
+                        <input type="checkbox" name="benefit" [(ngModel)]="internship.benefit" #benefit="ngModel" value="true" id="" class="form-check-input">
+                        Outros      
+                    </label>
                 </div>
             </div>
-            <div class="form-group ml-4" *ngIf="benefit.value === 'true'">
+            <div class="form-group ml-4" *ngIf="benefit.value == true">
                 <label for="qual">Quais outros benefícios?</label>
                 <input type="text" [(ngModel)]="internship.othersBenefit" #othersBenefit="ngModel" name="othersBenefit" class="form-control" required>
                 <div class="alert alert-danger mt-3" *ngIf="othersBenefit.invalid && (othersBenefit.dirty || othersBenefit.touched)">
