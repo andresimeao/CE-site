@@ -3,6 +3,13 @@
 
         <h5 class="card-title mb-4">Editar da vaga de estágio</h5>
 
+        <div class="form-group" *ngIf="intership?.payload.val().status == 2">
+            <label for="internshipVacancy">Razão da rejeição da vaga</label>
+            <div class="form-control">
+                {{intership?.payload.val().cancellationReason}}
+            </div>
+        </div>
+
         <form #f="ngForm" class="form-sample">
             <div class="form-group">
                 <label for="internshipVacancy">Vaga</label>

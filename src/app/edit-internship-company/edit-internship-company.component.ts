@@ -34,10 +34,16 @@ export class EditInternshipCompanyComponent implements OnInit {
       personalProfile: form.value.personalProfile,
       preference: form.value.preference,
       technicalKnowledge: form.value.technicalKnowledge,
-      valueOfRemuneration: form.value.valueOfRemuneration || " ",
-      status: 0
+      status: 0,
 
     }).then(resp => {
+      if(form.value.schedule.remuneration){
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          valueOfRemuneration: form.value.valueOfRemuneration
+        }).then(resp => {
+          console.log("Remuneração salva");
+        });
+      }
       if (form.value.schedule) {
         this.authservice.afDB.object('/interships/' + this.id).update({
           email: form.value.email,
@@ -45,15 +51,18 @@ export class EditInternshipCompanyComponent implements OnInit {
           whoTalkSchedule: form.value.whoTalkSchedule,
           phone: form.value.phone
         }).then(response => {
-          if (form.value.benefit) {
-            this.authservice.afDB.object('/interships/' + this.id).update({
-              othersBenefit: form.value.othersBenefit
-            }).then(response => {
-              alert('Salvo com sucesso!');
-            });
-          }
+          console.log("Agenda salva");
         });
       }
+      if (form.value.benefit) {
+        this.authservice.afDB.object('/interships/' + this.id).update({
+          othersBenefit: form.value.othersBenefit
+        }).then(response => {
+          console.log("Beneficio salvo");
+        });
+      }
+
+      alert('Salvo com sucesso!');
 
     }).catch(error => {
       alert('Erro: ' + error);
