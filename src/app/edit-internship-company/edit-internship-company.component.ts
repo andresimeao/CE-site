@@ -41,14 +41,14 @@ export class EditInternshipCompanyComponent implements OnInit {
       benefitTransport:form.value.benefitTransport
 
     }).then(resp => {
-      if(form.value.schedule.remuneration){
+      if(form.value.schedule.remuneration || this.intership.payload.val().remuneration){
         this.authservice.afDB.object('/interships/' + this.id).update({
           valueOfRemuneration: form.value.valueOfRemuneration
         }).then(resp => {
           console.log("Remuneração salva");
         });
       }
-      if (form.value.schedule) {
+      if (form.value.schedule || this.intership.payload.val().schedule) {
         this.authservice.afDB.object('/interships/' + this.id).update({
           email: form.value.email,
           whoCaringForEmail: form.value.whoCaringForEmail,
@@ -58,7 +58,7 @@ export class EditInternshipCompanyComponent implements OnInit {
           console.log("Agenda salva");
         });
       }
-      if (form.value.benefit) {
+      if (form.value.benefit || this.intership.payload.val().benefit) {
         this.authservice.afDB.object('/interships/' + this.id).update({
           othersBenefit: form.value.othersBenefit
         }).then(response => {
@@ -69,8 +69,10 @@ export class EditInternshipCompanyComponent implements OnInit {
       swal({
         icon: 'success',
         title: 'Atualizado',
-        text: 'O estágio foi atualizado!',
+        text: 'A vaga de estágio foi atualizada!',
       })
+      
+      this.router.navigate(['/home-page-company']);
 
     }).catch(error => {
       swal({
