@@ -36,7 +36,7 @@ export class MessagingService {
       });
     }
 
-    sendMessageAds(){
+    sendMessageAds(id){
       const headers = new Headers({
           'Content-Type':  'application/json',
           'Authorization': 'key=AAAA5sm2SCs:APA91bFImIKn5-3qzsudhAaunxU1lWBqdQJG3Av7P7lp7m-T7A0F3Y4ptYotr2c8LzycwQ-UVCZYy3XIiNPmo16y-K9tqe5cMkbkCwKQ8FD2xlu9_H7HGM70aHUQ6QNpVMVPyMFv5e14'
@@ -54,7 +54,7 @@ export class MessagingService {
           "icon":"./assets/images/logoFatec.png"
         },
         "data":{
-          "param1":"value1",
+          "id":id,
           "param2":"value2"
         },
           "to":"/topics/ads",
@@ -66,7 +66,7 @@ export class MessagingService {
       })
        
     }
-    sendMessageAgro(){
+    sendMessageAgro(id){
       const headers = new Headers({
           'Content-Type':  'application/json',
           'Authorization': 'key=AAAA5sm2SCs:APA91bFImIKn5-3qzsudhAaunxU1lWBqdQJG3Av7P7lp7m-T7A0F3Y4ptYotr2c8LzycwQ-UVCZYy3XIiNPmo16y-K9tqe5cMkbkCwKQ8FD2xlu9_H7HGM70aHUQ6QNpVMVPyMFv5e14'
@@ -84,7 +84,7 @@ export class MessagingService {
           "icon":"./assets/images/logoFatec.png"
         },
         "data":{
-          "param1":"value1",
+          "id":id,
           "param2":"value2"
         },
           "to":"/topics/agro",
@@ -96,7 +96,7 @@ export class MessagingService {
       })
        
     }
-    sendMessageInfo(){
+    sendMessageInfo(id){
       const headers = new Headers({
           'Content-Type':  'application/json',
           'Authorization': 'key=AAAA5sm2SCs:APA91bFImIKn5-3qzsudhAaunxU1lWBqdQJG3Av7P7lp7m-T7A0F3Y4ptYotr2c8LzycwQ-UVCZYy3XIiNPmo16y-K9tqe5cMkbkCwKQ8FD2xlu9_H7HGM70aHUQ6QNpVMVPyMFv5e14'
@@ -114,7 +114,7 @@ export class MessagingService {
           "icon":"./assets/images/logoFatec.png"
         },
         "data":{
-          "param1":"value1",
+          "id":id,
           "param2":"value2"
         },
           "to":"/topics/info",
@@ -126,7 +126,7 @@ export class MessagingService {
       })
        
     }
-    sendMessageAll(){
+    sendMessageAll(id){
       const headers = new Headers({
           'Content-Type':  'application/json',
           'Authorization': 'key=AAAA5sm2SCs:APA91bFImIKn5-3qzsudhAaunxU1lWBqdQJG3Av7P7lp7m-T7A0F3Y4ptYotr2c8LzycwQ-UVCZYy3XIiNPmo16y-K9tqe5cMkbkCwKQ8FD2xlu9_H7HGM70aHUQ6QNpVMVPyMFv5e14'
@@ -144,7 +144,7 @@ export class MessagingService {
           "icon":"./assets/images/logoFatec.png"
         },
         "data":{
-          "param1":"value1",
+          "id":id,
           "param2":"value2"
         },
           "to":"/topics/all",

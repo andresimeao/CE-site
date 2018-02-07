@@ -112,13 +112,13 @@ export class IntershipDetailComponent implements OnInit {
 
     }).then(resp => {
       if (this.program == "Análise e Desenvolvimento de Sistemas") {
-        this.message.sendMessageAds();
+        this.message.sendMessageAds(this.id);
       }
       if (this.program == "Informática para negócios") {
-        this.message.sendMessageInfo()
+        this.message.sendMessageInfo(this.id)
       }
       if (this.program == "Agronegócio") {
-        this.message.sendMessageAgro();
+        this.message.sendMessageAgro(this.id);
       }
 
       swal({
