@@ -30,6 +30,7 @@
 
             <nav *ngIf="showMenu" class="bg-white sidebar sidebar-offcanvas" id="sidebar">
                 <div class="user-info">
+                    <img src="./assets/images/userPhoto.png">
                     <p class="name">{{user?.name}}</p>
                     <p class="designation" *ngIf="user?.status == 1">Funcionário Central de Estágios</p>
                     <p class="designation" *ngIf="user?.status == 2">{{user?.company}}</p>

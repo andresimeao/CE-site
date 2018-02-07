@@ -95,7 +95,7 @@ table thead tr th {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin: 110px 0 40px;
+    margin: 75px 0 40px;
 }
 
 .sidebar .user-info img {
